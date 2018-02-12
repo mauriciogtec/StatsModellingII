@@ -1,4 +1,5 @@
-# List 1: Preliminaries
+# List one: Preliminaries
+
 
 ## Exchangeability and de Finetti's theorem
 

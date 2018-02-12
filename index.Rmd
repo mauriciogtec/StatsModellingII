@@ -10,10 +10,6 @@ site: bookdown::bookdown_site
 documentclass: book
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Welcome
 
 These notes contain my transcriptions and solutions to the exercises of the class Statistical Modelling II, taught at UT Austin during the Spring of 2018 by Sinead Williamson. If you find an error, it is most likely my own fault.
