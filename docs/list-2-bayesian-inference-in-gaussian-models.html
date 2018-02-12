@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Statistical Modelling II</title>
   <meta name="description" content="Statistical Modelling II">
-  <meta name="generator" content="bookdown 0.5.15 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Statistical Modelling II" />
   <meta property="og:type" content="book" />
@@ -123,7 +123,20 @@
 </div>
 
 <hr />
-<p><strong><em>Solution</em></strong>.</p>
+<strong><em>Solution</em></strong>. These computations are very similar to those in the previous list. So here is the summarised version using of the direct computation with Bayes’ rule $$
+<span class="math display">\[\begin{aligned}
+p(\mu, \omega \mid y) &amp; \propto p(x\mid \mu, \omega ) p(\mu,\sigma) \\
+&amp; = p(y\mid \mu, \omega ) p(\mu \mid \omega)p(\omega) \\
+&amp; \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2} \sum_{i=1}^n(y_i - \mu)^2 \right\}
+\exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
+&amp; \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2}\left(\sum_{i=1}^n(y_i - \bar{y})^2 + n(\bar{y} - \mu)^2 \right)\right\}
+\exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
+
+&amp; \propto \omega^{n/2 + \alpha_0 - 1}\exp\left\{ -\frac{\omega}{2}\left((n + \omega / \kappa_0) \mu^2 - 2(n\bar{y} + \mu_0/\kappa_0) \mu + n\bar{y}^2 + \mu_0^2/\kappa_0   \right)\right\}
+\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\} \\
+&amp;= \omega^{n/2 + \alpha_0 - 1}  \exp\left\{ -\frac{n\omega + \omega / \kappa_0}{2} \left(\mu - \frac{n \bar{y} + \mu_0/\kappa_0}{n + 1/\kappa_0}\right)^2 \right\}\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\}
+\end{aligned}\]</span>
+<p>$$</p>
 <hr />
 
 <div class="exercise">
