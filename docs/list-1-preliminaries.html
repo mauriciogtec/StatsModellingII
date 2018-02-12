@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDS 383d</a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#list-1-preliminaries"><i class="fa fa-check"></i><b>1</b> List 1: Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#exchangeability-and-de-finettis-theorem"><i class="fa fa-check"></i><b>1.1</b> Exchangeability and de Finetti’s theorem</a><ul>
+<li class="chapter" data-level="1.1.1" data-path=""><a href="#de-finnetis-theorem"><i class="fa fa-check"></i><b>1.1.1</b> De Finneti’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#exponential-family-of-distributions"><i class="fa fa-check"></i><b>1.2</b> Exponential family of distributions</a><ul>
+<li class="chapter" data-level="1.2.1" data-path=""><a href="#cumulants-and-moments-of-exponential-families"><i class="fa fa-check"></i><b>1.2.1</b> Cumulants and moments of exponential families</a></li>
+<li class="chapter" data-level="1.2.2" data-path=""><a href="#conjugate-priors"><i class="fa fa-check"></i><b>1.2.2</b> Conjugate priors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#multivariate-normal-distribution"><i class="fa fa-check"></i><b>1.3</b> Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="1.3.1" data-path=""><a href="#manipulation-of-multivariate-normals"><i class="fa fa-check"></i><b>1.3.1</b> Manipulation of multivariate normals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#frequentist-estimation-and-uncertainty-quantification"><i class="fa fa-check"></i><b>1.4</b> Frequentist estimation and uncertainty quantification</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="list-1-preliminaries" class="section level1">
+<h1><span class="header-section-number">1</span> List 1: Preliminaries</h1>
+<div id="exchangeability-and-de-finettis-theorem" class="section level2">
+<h2><span class="header-section-number">1.1</span> Exchangeability and de Finetti’s theorem</h2>
+<p>A standard situation in statistics is to be presented with a sequence of observations, and use them to make predictions about future observations. In order to do so, we need to make certain assumptions about the nature of the statistical relationships between the sequence of observations.</p>
+A common assumption is that our data are <strong>exchangeable</strong>, meaning that their joint probability is invariant under permutations. More concretely, we say a sequence of <span class="math inline">\(N\)</span> observations is finitely exchangeable if <span class="math display">\[P(X_1\in A_1,X_2\in A_2,\dots, X_N\in A_n) = P(X_{\sigma(1)}\in A_1, X_{\sigma(2)}\in A_2,\dots, X_{\sigma(N)}\in A_n)\]</span> for any permutation of the integers 1 through <span class="math inline">\(N\)</span>, and that an infinite sequence is infinitely exchangeable if this invariance holds for all values of <span class="math inline">\(N\)</span>. ` 
+<div class="exercise">
+<span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 1.1  </strong></span>Clearly, all iid sequences are exchangeable, but not all exchangeable sequences are iid. Consider an urn, containing <span class="math inline">\(r\)</span> red balls and <span class="math inline">\(b\)</span> blue balls. A sequence of colors is generated by repeatedly sampling a ball from the urn, noting its color, and then returning the ball, plus another ball of the same color, to the urn. Show that the resulting sequence is exchangeable, but not iid.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. They are clearly not iid since the outcome of <span class="math inline">\(X_i\)</span> affects the distribution of <span class="math inline">\(X_{i+1}\)</span>. For instance <span class="math display">\[
+\begin{aligned}
+P(X_2 = r) &amp; = P(X_2 = r \mid X_1 = r) P(X_1 =r) + \\ &amp; \hspace{1cm} P(X_2 = r \mid X_1 = b) P(X_1 =b) \\
+    &amp; = \frac{2}{3} \frac{1}{2} + \frac{1}{3} \frac{1}{2} \\ &amp; =  \frac{1}{2}. 
+\end{aligned}
+\]</span> Thus <span class="math display">\[
+P(X_2 = r) = \frac{1}{2}\neq \frac{2}{3}  = P(X_2 = r \mid X_1 = r).
+\]</span> We now show they’re exchangeable. For convenience, denote <span class="math inline">\(R_k\)</span> the number of red and <span class="math inline">\(B_k\)</span> the number of blue outcomes in <span class="math inline">\(x_1, ... x_k\)</span>. Observe that by construction <span class="math display">\[
+P(X_n = r \mid X_1 = x_1, ..., X_{n_1} = x_{n-1}) = \frac{R_n + 1}{n+1}.
+\]</span> and <span class="math display">\[
+P(X_n = b \mid X_1 = x_1, ..., X_{n_1} = x_{n-1}) = \frac{B_n + 1}{n+1}.
+\]</span> Now, since <span class="math display">\[
+p(X_1 , ..., X_n) = p(X_1) p(X_2 \mid X_1) ... p(X_n\mid X_1 , ... X_{n-1}),
+\]</span> we have <span class="math display">\[
+\begin{aligned}
+P(X_1 = x_1, ..., X_n = x_n) &amp; = \sum_{k=1}^{n} \frac{1}{k+1}\left((R_{k-1} + 1) 1(x_k = r) + (B_{k-1} + 1)1(x_k = b)\right)\\
+&amp; = \frac{R_n! B_n!}{(n+1)!}.
+\end{aligned}
+\]</span> The latter quantity is invariante under permutations, which shows the exchangeability.</p>
+<hr />
+<div id="de-finnetis-theorem" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> De Finneti’s theorem</h3>
+<p>Loosely speaking, de Finetti’s Theorem states if a sequence of random variables is infinitely exchangeable, those random variables must be conditionally i.i.d. given some set of parameters. More formally,</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-2" class="theorem"><strong>Theorem 1.1  (de Finetti)  </strong></span> Let <span class="math inline">\((X_1,X_2,\dots)\)</span> be an infinite sequence of random variables in some space <span class="math inline">\(\mathcal{X}\)</span>. This sequence is infinitely exchangeable if and only if there exists a probability distribution <span class="math inline">\(Q_\theta\)</span>, parametrized by some random parameter <span class="math inline">\(\theta\sim \nu\)</span>, such that the <span class="math inline">\(X_i\)</span> are conditionally iid given <span class="math inline">\(Q_\theta\)</span> and such that <span class="math display">\[P(X_1\in A_1,X_2\in A_2,\dots) = \int_{\Theta}\prod_{i=1}^\infty Q_\theta(A_i) \nu(d\theta).\]</span>
+</div>
+
+<p>This means we can imagine that any exchangeable sequence has been generated as a sequence of i.i.d. random variables with some unknown law. This provides a motivation for Bayesian inference: We have a hierarchical model, where data are generated according to some distribution parametrized by a random (in the Bayesian context – i.e. unknown/uncertain) variable <span class="math inline">\(\theta\)</span>, and our uncertainty about <span class="math inline">\(\theta\)</span> is characterized by some distribution <span class="math inline">\(\nu\)</span>.</p>
+<p>Let’s consider the 0/1 form of de Finetti’s theorem, for exchangeable sequences of binary variables:</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 1.2  (de Finetti 0/1)  </strong></span> An infinite sequence <span class="math inline">\((X_1,X_2,\dots)\)</span> of binary random variables is exchangeable if and only if its distribution can be written as <span class="math display">\[\begin{aligned}P(X_1=x_1,X_2=x_2,\dots, X_N=x_N)  =&amp; \int_0^1\prod_{i=1}^N\left\{\theta^{x_i}(1-\theta)^{1-x_i}\right\} d\nu(\theta)\\
+    =&amp;\int_0^1 \theta^{k}(1-\theta)^{N-k} d\nu(\theta)\end{aligned}\]</span> where <span class="math inline">\(k=\sum_ix_i\)</span>.
+</div>
+
+<p>We will now work through (most of) a proof in the next two exercises.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-4" class="exercise"><strong>Exercise 1.2  </strong></span> We will start off with a finite sequence <span class="math inline">\((X_1,\dots, X_M)\)</span>. For any <span class="math inline">\(N\leq M\)</span>, show that <span class="math display">\[P\left(\sum_{i=1}^N X_i = s\Big|\sum_{i=1}^M X_i = t\right) = \frac{{t\choose s}{M-t\choose N-s}}{{M \choose N}}\]</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. Since the <span class="math inline">\(X_i\)</span> are exchangeable, <span class="math inline">\(P\left(\sum_{i=1}^N X_i = s\Big|\sum_{i=1}^M X_i = t\right)\)</span> boils down to the problem of randomly selecting a subset of size <span class="math inline">\(N\)</span> with exactly <span class="math inline">\(s\)</span> ones from a collection of size <span class="math inline">\(M\)</span> that has <span class="math inline">\(t\)</span> ones and <span class="math inline">\(M-t\)</span> zeros. This is a basic combinatorics problem. There is a total of <span class="math inline">\(\binom{M}{N}\)</span> posible subsets. We can select <span class="math inline">\(s\)</span> ones from the <span class="math inline">\(t\)</span> available ones in a total of <span class="math inline">\(\binom{t}{s}\)</span> ways, and the rest zeros from the available <span class="math inline">\(M-t\)</span>, which can be done in <span class="math inline">\(\binom{M-t}{t-s}\)</span> forms. All posibilities have the same probability by exchangeability, so the total number of desired cases divided by the total number of cases is <span class="math display">\[
+P\left(\sum_{i=1}^N X_i = s\Big|\sum_{i=1}^M X_i = t\right) = \frac{\binom{t}{s}\binom{M-t}{t-s}}{\binom{M}{N}}.
+\]</span></p>
+<hr />
+We can therefore write
+<span class="math display">\[\begin{equation}
+P\left(\sum_{i=1}^N X_i = s\right) = {N\choose s}\sum_{t=s}^{M-N+s}\frac{(t)_s(M-t)_{n-s}}{(M)_N}P\left(\sum_{i=1}^M X_i = t\right),
+\label{eqn:a}
+\end{equation}\]</span>
+<p>where <span class="math inline">\((x)_y = x(x-1)\dots (x-y+1)\)</span>.</p>
+<p>Let <span class="math inline">\(F_M(\theta)\)</span> be the distribution function of <span class="math inline">\(\frac{1}{M}(X_1, + \dots, + X_M)\)</span> – i.e. a step function between 0 and 1, with steps of size <span class="math inline">\(P(\sum_i X_i= t)\)</span> at <span class="math inline">\(t=0,1,\dots, M\)</span>. Then we can rewrite Equation~ as</p>
+<span class="math display">\[P\left(\sum_{i=1}^N X_i = s\right) = {N\choose s} \int_0^1\frac{(M\theta)_s(M(1-\theta))_{N-s}}{(M)_N}dF_M(\theta)\]</span> 
+<div class="exercise">
+<span id="exr:unnamed-chunk-5" class="exercise"><strong>Exercise 1.3  </strong></span> Show that, as <span class="math inline">\(M\rightarrow \infty\)</span>, we can write <span class="math display">\[P\left(\sum_{i=1}^N X_i = s\right) \rightarrow {N\choose s} \int_0^1\theta^s(1-\theta)^{N-s}dF_\infty(\theta)\]</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. Observe we can factor out <span class="math inline">\(M\)</span> from every term in the integrand and rewrite it as <span class="math display">\[
+\frac{(M\theta)_s(M(1-\theta))_{N-s}}{(M)_N} = 
+ \frac{\theta \cdots \left(\theta - \frac{s + 1}{M}\right)(1-\theta)\cdots\left(1-\theta - \frac{N - s + 1}{M}\right)}{\left(1-\frac{1}{M}\right)\cdots\left(1-\frac{N+1}{M}\right)} \xrightarrow{M\to\infty} \theta^s(1-\theta)^{N-s}
+\]</span> We will ignore the formal details of why we can exchange the limit with the integral. We then have <span class="math display">\[
+\begin{aligned}
+\lim_{M\to\infty} {N\choose s} \int_0^1\frac{(M\theta)_s(M(1-\theta))_{N-s}}{(M)_N}dF_M(\theta)
+&amp; =
+{N\choose s} \int_0^1 \lim_{M\to\infty}  \frac{(M\theta)_s(M(1-\theta))_{N-s}}{(M)_N} dF_\infty(\theta) \\
+&amp; = 
+{N\choose s} \int_0^1 \theta^s(1-\theta)^{N-s} dF_\infty(\theta)
+\end{aligned}
+\]</span></p>
+<hr />
+<p>The proof is completed using a result (the Helly Theorem), that shows that any sequence <span class="math inline">\(\{F_M(\theta); M=1,2,\dot\}\)</span> of probability distributions on [0,1] contains a subsequence that converges to <span class="math inline">\(F(\theta)\)</span>.</p>
+</div>
+</div>
+<div id="exponential-family-of-distributions" class="section level2">
+<h2><span class="header-section-number">1.2</span> Exponential family of distributions</h2>
+<p>De Finetti’s theorem can be seen as a motivation for Bayesian inference. If our data are exchangeable, we know that they are iid according to some unknown probability distribution <span class="math inline">\(F_\theta(X)\)</span>, which we can think of as a <strong>likelihood function</strong>, and that they can be represented using an mixture of such iid sequences. As we saw from the 0/1 case, the distribution over probabilities is given by the limit of the empirical distribution function. When not working in this limit, we may choose to model this distribution over the parameters of our likelihood function using a <strong>prior</strong> distribution <span class="math inline">\(\pi(\theta)\)</span> – ideally one that both assigns probability mass to where we expect the empirical distribution might concentrate, and for which <span class="math inline">\(\int_\Theta F_\theta(X) \pi(d\theta)\)</span> is tractable.</p>
+<p>The exponential family of probability distributions is the class of distributions parametrized by <span class="math inline">\(\theta\)</span> whose density can be written as</p>
+<p><span class="math display">\[p(x|\theta) = h(x)\exp\{\eta(\theta)^TT(x) - A(\eta(\theta))\}\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\eta(\theta)\)</span> (sometimes just written as <span class="math inline">\(\eta\)</span>), is a transformation of <span class="math inline">\(\theta\)</span> that is often referred to as the .</li>
+<li><span class="math inline">\(T(X)\)</span> is known as a  of <span class="math inline">\(X\)</span>. We see that <span class="math inline">\(p(x|\theta)\)</span> depends only on <span class="math inline">\(X\)</span> through <span class="math inline">\(T(X)\)</span>, implying that <span class="math inline">\(T(X)\)</span> contains all the relevant information about <span class="math inline">\(X\)</span>. <em>\item</em> <span class="math inline">\(A(\eta(\theta)\)</span> (or <span class="math inline">\(A(\eta)\)</span>) is known as the  or the  (remember, a partition function provides a normalizing constant).</li>
+</ul>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-6" class="example"><strong>Example 1.1  (The Bernoulli distribution)  </strong></span> A Bernoulli random variable <span class="math inline">\(X\)</span> takes the value <span class="math inline">\(X=1\)</span> with probability <span class="math inline">\(\pi\)</span> and <span class="math inline">\(X=0\)</span> with probability <span class="math inline">\(1-\pi\)</span>; it’s density can be written:</p>
+<span class="math display">\[\begin{aligned}
+    p(x|\pi) =&amp; \pi^x(1-\pi)^{1-x}\\
+    =&amp; \exp\left\{\log\left(\frac{\pi}{1-\pi}\right)x + \log(1-\pi)\right\}\end{aligned}\]</span> By rewriting in this exponential family form, we see that
+
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-7" class="exercise"><strong>Exercise 1.4  </strong></span> The Poisson random variable has PDF <span class="math display">\[p(x|\lambda) = \frac{\lambda^xe^{-\lambda}}{x!}\]</span> Re-write the density of the Poisson random variable in exponential family form. What are <span class="math inline">\(\eta\)</span>, <span class="math inline">\(T(x)\)</span>, <span class="math inline">\(A(\eta)\)</span> and <span class="math inline">\(h(x)\)</span>? What about if we have <span class="math inline">\(n\)</span> independent samples <span class="math inline">\(x_1,\dots, x_n\)</span>?
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We shall use that <span class="math inline">\(\lambda^x = e^{x\log\lambda}\)</span>, then <span class="math display">\[
+p(x\mid \lambda) = \frac{1}{x!}e^{x\log\lambda - \lambda}.
+\]</span> We then recognize that <span class="math inline">\(p(x\mid \lambda)\)</span> takes a general exponential form if we set <span class="math inline">\(\theta = \lambda\)</span> and</p>
+<ul>
+<li><span class="math inline">\(h(x) = 1 / x!\)</span></li>
+<li><span class="math inline">\(\eta(\lambda) = \log \lambda\)</span></li>
+<li><span class="math inline">\(T(x) = x\)</span></li>
+<li><span class="math inline">\(A\colon \eta \to e^\eta\)</span> so that <span class="math inline">\(A(\eta(\lambda)) = \lambda\)</span>.</li>
+</ul>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-8" class="exercise"><strong>Exercise 1.5  </strong></span> The gamma random variable has PDF <span class="math display">\[p(x|\alpha,\beta) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\]</span> What are the natural parameters and sufficient statistics for the gamma distribution, given <span class="math inline">\(n\)</span> observations <span class="math inline">\(x_1,\dots, x_N\)</span>?
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. Let us rewrite <span class="math display">\[
+p(x\mid \alpha, \beta) =e^{(\alpha - 1)\log x - \beta x + \alpha\log \beta - \log\Gamma(\alpha)},
+\]</span> so we may obtain an exponential form by setting <span class="math inline">\(\theta = (\alpha, \beta)\)</span> and</p>
+<ul>
+<li><span class="math inline">\(h(x) = 1\)</span></li>
+<li><span class="math inline">\(\eta(\alpha, \beta) = (\alpha - 1, -\beta)\)</span></li>
+<li><span class="math inline">\(T(x) = (\log x, x)\)</span></li>
+<li><span class="math inline">\(A\colon (\eta_1, \eta_2) \to \log\Gamma(\eta_1+1) - (\eta_1 + 1)\log(-\eta_2)\)</span> so that <span class="math inline">\(A(\eta(\alpha, \beta)) = \log\Gamma(\alpha) - \alpha\log\beta\)</span>.</li>
+</ul>
+<hr />
+<div id="cumulants-and-moments-of-exponential-families" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Cumulants and moments of exponential families</h3>
+<p>We are probably most familiar with using the PDF or the CDF of a random variable to describe its distribution, but there are other representations that can be useful. The  <span class="math inline">\(M_X(s) = E[\exp(s^Tx)] = \int_\mathcal{X} e^{s^Tx}p_X(x) dx\)</span> is the Laplace transform of the PDF <span class="math inline">\(p_X(x)\)</span>. As the name suggests, we can use the moment-generating function to generate the (uncentered) moments of a random variable; the <span class="math inline">\(n\)</span>th moment is given by</p>
+<p><span class="math display">\[m_n = \frac{d^nM_X}{ds^n}\Bigr|_{s=0}\]</span></p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-9" class="exercise"><strong>Exercise 1.6  </strong></span> For exponential family random variables, we know that the sufficient statistic <span class="math inline">\(T(X)\)</span> contains all the information about <span class="math inline">\(X\)</span>, so (for univariate <span class="math inline">\(X\)</span>) we can write the moment generating function of the sufficient statistic as <span class="math inline">\(E[e^{sT(X)}|\eta]\)</span>. Show that the moment generating function for the sufficient statistic of an arbitrary exponential family random variable with natural parameter <span class="math inline">\(\eta\)</span> can be written as <span class="math display">\[M_{T(X)}(s) = \exp\{A(\eta+s) - A(\eta)\}\]</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. Essentially, what is happening is that the argument <span class="math inline">\(s\)</span> of the MGF becomes a shift on the Laplace transform of the sufficient statistic. We compute <span class="math display">\[
+\begin{aligned}
+E\left[e^{sT(X)}\right] &amp; = \int_{-\infty}^\infty e^{sT(x)}e^{\eta T(x) - A(\eta)} \; dx \\
+&amp; = e^{- A(\eta)} \int_{-\infty}^\infty e^{(s + \eta)T(x)} \; dx \\
+&amp; = e^{- A(\eta) + A(s + \eta)}   \int_{-\infty}^\infty p_X(x) \; dx
+\\
+&amp; = e^{- A(\eta) + A(s + \eta)}.
+\end{aligned}
+\]</span></p>
+<hr />
+<p>A related representation is the  <span class="math inline">\(C_X(s) = \log E[e^{s^Tx}] = \log(M_X(s))\)</span>. Clearly, for exponential families this takes the form <span class="math inline">\(C_{T(X)}(s) = A(\eta+s)-A(\eta)\)</span>. This explains why <span class="math inline">\(A(\eta)\)</span> is sometimes called the cumulant function! The cumulant function can be used to generate the cumulants of a distribution as</p>
+<p><span class="math display">\[\kappa_n = \frac{d^nC_X}{ds^n}\Bigr|_{s=0}\]</span></p>
+<p>The first three cumulants are the same as the first three central moments of the distribution – meaning, the cumulant generative function is a useful tool for calculating mean, variance and the third central moment.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-10" class="exercise"><strong>Exercise 1.7  </strong></span> It is usually easier to calculate mean and variance using the cumulant generating function rather than the moment generating function. Starting from the exponential family representation of the Poisson distribution from Exercise 1.4, calculate the mean and variance of the Poisson using a) the moment generating function, and b) the cumulant generating function.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. For the poisson distribution, <span class="math inline">\(T(x) = x\)</span>, so the MGF of the sufficient statistics is just the MGF of <span class="math inline">\(X\)</span>. We saw earlier that for the Poisson PDF we have <span class="math inline">\(\eta = \log \lambda\)</span> and <span class="math inline">\(A(\eta) = e^\eta\)</span>. Thus <span class="math display">\[
+M_X(s) = e^{A(\log\lambda + s) - A(\log\lambda)} =  e^{\lambda e^s - \lambda}.
+\]</span> The first and second moments are <span class="math display">\[
+E[X] = M_X&#39;(0) = \lambda e^s e^{\lambda e^s - \lambda}\big\rvert_{s = 0} = \lambda
+\]</span> <span class="math display">\[
+E[X^2] = M_X&#39;&#39;(0) = \lambda (1 + \lambda e^s) e^{s + \lambda e^s - \lambda}\big\rvert_{s = 0} = \lambda(1 + \lambda) = \lambda + \lambda^2,
+\]</span> Thus, the variance is <span class="math display">\[
+\mathrm{Var}(X) = E[X^2] - (E[X])^2 = \lambda.
+\]</span> Now the easier CGF version. <span class="math display">\[
+E[X] = C&#39;_X(0) = \lambda e^s \big\rvert_{s = 0} = \lambda
+\]</span> and <span class="math display">\[
+\mathrm{Var}(X)  = C&#39;&#39;_X(0) =  \lambda e^s \big\rvert_{s = 0} = \lambda.
+\]</span></p>
+<hr />
+</div>
+<div id="conjugate-priors" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Conjugate priors</h3>
+<p>Exponential families are very important in Bayesian statistics because, for any exponential family likelihood, we can find an conjugate exponential family prior. If our likelihood takes the form</p>
+<p><span class="math display">\[f(x|\eta) = h(x)\exp\left\{\eta^TT(x) - A(\eta)\right\}\]</span></p>
+<p>then a conjugate prior is given by</p>
+<p><span class="math display">\[p(\eta|\xi,\nu) = g(\xi,\nu)\exp\left\{\eta^T\xi - \nu A(\eta)\right\}\]</span></p>
+<p>Below are some exercises based on common conjugate priors.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-11" class="exercise"><strong>Exercise 1.8  </strong></span> Suppose we have <span class="math inline">\(N\)</span> independent observations <span class="math inline">\(x_1,\dots, x_N \stackrel{\small{iid}}{\sim}\mbox{Normal}(\mu, \sigma^2)\)</span>. If <span class="math inline">\(\sigma^2\)</span> is known and <span class="math inline">\(\mu\sim \mathrm{Normal}(\mu_0,\sigma_0^2)\)</span>, derive the posterior for <span class="math inline">\(\mu|x_1,\dots, x_N\)</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. For convenience, we’ll work with the notation (of the precision) <span class="math inline">\(\tau = 1/\sigma^2\)</span> and <span class="math inline">\(\tau_0 = \sigma_0^2\)</span>. Then using Bayes’ rule <span class="math display">\[
+\begin{aligned}
+p(\mu \mid x) &amp; \propto p(x \mid \mu) p(\mu) \\
+&amp; \propto \exp\left\{-\frac{\tau}{2}\sum_{i=1}^N(x_i - \mu)^2 \right\}  \exp\left\{ - \frac{\tau_0}{2}(\mu - \mu_0)^2 \right\} \\
+&amp; \propto \exp\left\{-\frac{1}{2}\left((N\tau + \tau_0)\mu^2 - 2(N\tau \bar{x} + \tau_0 \mu_0) \mu \right)\right\} \\
+&amp; \propto \exp\left\{ -\frac{(N\tau + \tau_0)}{2}\left(\mu - \frac{N\tau\bar{x} + \tau_0\mu_0}{N\tau + \tau_0} \right)^2 \right\}.
+\end{aligned}
+\]</span> Thus <span class="math display">\[
+\mu \mid x \sim \mathrm{Normal}\left(\frac{N\tau}{N\tau + \tau_0}\bar{x} + \frac{\tau_0}{N\tau + \tau_0}\mu_0, N\tau + \tau_ 0\right).
+\]</span> The last expression is beautiful because we see that the precision increases linearnly with the number of data points, and that the new expected mean is a weighted average of the prior and the empirical mean using the precision as weights.</p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-12" class="exercise"><strong>Exercise 1.9  </strong></span> Now, let’s assume <span class="math inline">\(x_1,\dots, x_N \stackrel{\small{iid}}{\sim}\mbox{Normal}(\mu, \sigma^2)\)</span> with known mean <span class="math inline">\(\mu\)</span> but unknown variance <span class="math inline">\(\sigma^2\)</span>. Let’s express the likelihood in terms of the precision, <span class="math inline">\(\omega=1 / \sigma^2\)</span>: <span class="math display">\[f(x_i|\mu, \omega) = \sqrt{\frac{\omega}{2\pi}} \exp\left\{-\frac{\omega}{2}(x_i-\mu)^2\right\}\]</span> Let <span class="math inline">\(\omega\)</span> have a gamma prior (this is also known as putting an inverse-gamma prior on <span class="math inline">\(\sigma^2\)</span>): <span class="math display">\[p(\omega) = \frac{\beta^\alpha}{\Gamma(\alpha)}\omega^{\alpha-1}e^{-\beta \omega}\]</span> Derive the posterior distribution for <span class="math inline">\(\omega\)</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We procede similarly as above. <span class="math display">\[
+\begin{aligned}
+p(\tau \mid x) &amp; \propto  p(\tau \mid x) p(\tau)  \\
+&amp; \propto \tau^{N/2}\exp\left\{-\frac{\tau}{2}\sum_{i=1}^N(x_i - \mu)^2 \right\} \tau^{\alpha - 1}\exp\{-\beta\tau\} \\
+&amp; = \tau^{\alpha + N/2 - 1} \exp\left\{-\left(\frac{1}{2}\sum_{i=1}^N(x_i - \mu)^2  + \beta \right)\tau \right\}.
+\end{aligned}
+\]</span> Hence, <span class="math display">\[
+\sigma^2 \mid x \sim \mathrm{InvGamma}\left(\alpha + \frac{N}{2}, \frac{1}{2}\sum_{i=1}^N(x_i - \mu)^2  + \beta \right).
+\]</span></p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-13" class="exercise"><strong>Exercise 1.10  </strong></span> Let’s assume <span class="math inline">\(x \sim \mbox{Normal}(0, \sigma^2)\)</span> and that <span class="math inline">\(\sigma^2\sim\mbox{InvGamma}(\alpha,\beta)\)</span> (i.e. <span class="math inline">\(1/\sigma^2 \sim \mbox{Gamma}(\alpha,\beta)\)</span>). Show that the marginal distribution of <span class="math inline">\(x\)</span> is given by a Student’s <span class="math inline">\(t\)</span> distribution.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. First we define the general form a univariate general t-distribution of a random variable <span class="math inline">\(x\)</span>, depending on location and precision matrix parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\omega\)</span>, and <span class="math inline">\(\nu\)</span> degrees of freedom. We emphasize that <span class="math inline">\(1 / \omega\)</span> will not the exact variance as in the Normal case (but related):</p>
+<p><span class="math display">\[
+\mathrm{tStudent(x; \mu, \omega, \nu)} = \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu\pi}\Gamma\left(\frac{\nu}{2}\right)} \left(1 + \omega\frac{x^2}{\nu}\right)^{-\frac{\nu + 1}{2}}.
+\]</span> One can verify that the distribution converges to a <span class="math inline">\(\mathrm{Normal}(\mu, \omega)\)</span> as <span class="math inline">\(\nu \to \infty\)</span>.</p>
+<p>We now show the marginal of <span class="math inline">\(x\)</span> is a generalised t-distribution. We compute <span class="math display">\[
+\begin{aligned}
+p(x) &amp;= \int p(x \mid \omega)p(\omega) \; d\omega \\
+     &amp; \propto \int \exp\left\{ -\left(\frac{x^2}{2} + \beta\right)\omega\right\}\omega^{\alpha + 1/2 - 1} \; d\omega \\
+      &amp; \propto \left(\frac{x^2}{2} + \beta\right)^{-\alpha - 1/2} \\
+      &amp; \propto \left(1 + \frac{\alpha}{\beta}\cdot\frac{x^2}{2\alpha}  \right)^{-\frac{2\alpha + 1}{2}} \\
+      &amp; \propto \mathrm{tStudent}\left(x; 0, \frac{\alpha}{\beta}, 2\alpha\right).
+\end{aligned}
+\]</span> So <span class="math inline">\(x\)</span> is a generalised <span class="math inline">\(t\)</span> with mean zero, precision <span class="math inline">\(\alpha/\beta\)</span>, and <span class="math inline">\(2\alpha\)</span> degrees of freedom.</p>
+<hr />
+</div>
+</div>
+<div id="multivariate-normal-distribution" class="section level2">
+<h2><span class="header-section-number">1.3</span> Multivariate Normal Distribution</h2>
+<p>So far, we have looked at univariate random variables - particularly, the univariate normal random variable, which is characterized by its mean and variance. We will often work with the multivariate normal distribution, a natural generalization characterized by a mean vector and a covariance matrix.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-14" class="exercise"><strong>Exercise 1.11  (covariance matrix)  </strong></span> The covariance matrix <span class="math inline">\(\Sigma\)</span> of a vector-valued random variable <span class="math inline">\(x\)</span> is the matrix whose entries <span class="math inline">\(\Sigma(i,j) = cov(x_i,x_j)\)</span> are given by the covariance between the <span class="math inline">\(i\)</span>th and <span class="math inline">\(j\)</span>th elements of <span class="math inline">\(x\)</span>, giving</p>
+<p><span class="math display">\[\Sigma = E\left[(x-\mu)(x-\mu)^T\right]\]</span></p>
+Show that a) <span class="math inline">\(\Sigma = E[xx^T] - \mu\mu^T\)</span>; b) if the covariance of <span class="math inline">\(x\)</span> is <span class="math inline">\(\sigma\)</span>, then the covariance of <span class="math inline">\(Ax+b\)</span> is <span class="math inline">\(A\Sigma A^T\)</span>
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. By the definition of entrywise expectation and matrix operations we have <span class="math display">\[
+\begin{aligned}
+(E[xx&#39;] - \mu\mu&#39;)_{ij} &amp; = E[(xx&#39;)_{ij}] -  (\mu\mu&#39;)_{ij} \\
+&amp; = E[x_ix_j] - \mu_i\mu_j \\
+&amp; = \Sigma_{ij}.
+\end{aligned}
+\]</span> So <span class="math inline">\(E[xx&#39;] - \mu\mu&#39; = \Sigma\)</span>, this proves (a). For (b), define <span class="math inline">\(y=Ax + b\)</span>, observe first that by the linearity and entrywise definition of the expectation operator we have <span class="math display">\[
+E[y] = E[Ax + b] = A\mu + b.
+\]</span> Hence, <span class="math display">\[
+y - E[y] = (Ax + b) - (A\mu + b) = A(x-\mu).
+\]</span> Therefore, again using the linearity of the expectation, we conclude <span class="math display">\[
+\begin{aligned}
+E[(y - E[y])(y - E[y])&#39;] &amp; = E[A(x-\mu)(A(x-\mu))&#39;] \\
+  &amp; = AE[(x - \mu)(x-\mu)&#39;]A&#39; \\
+  &amp; = A\Sigma A&#39;
+\end{aligned}
+\]</span></p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-15" class="exercise"><strong>Exercise 1.12  (Standard multivariate normal)  </strong></span> The simplest multivariate normal, known as the standard multivariate normal, occurs where the entries of <span class="math inline">\(x\)</span> are independent and have mean 0 and variance 1. a) What is the moment generating function of a univariate normal, with mean <span class="math inline">\(m\)</span> and variance <span class="math inline">\(v^2\)</span>? b) Express the PDF and moment generating function of the standard multivariate normal, in vector notation.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. (a) We can directly compute the Laplace transform <span class="math display">\[
+\begin{aligned}
+M_X(s) = E[e^{s X}] &amp; = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{sx}e^{\frac{1}{2}x^2}\;dx \\ 
+&amp; = e^{\frac{1}{2}s^2}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{\frac{1}{2}(x-s)^2}\;dx \\
+&amp; = e^{\frac{1}{2}s^2}.
+\end{aligned}
+\]</span> For (b), let <span class="math inline">\(X\sim \mathrm{Normal}(0, I_n)\)</span> be an n-dimensional standard Normal. For any vector <span class="math inline">\(s\in\mathbb{R}^n_{\geq 0}\)</span>, the MGF is <span class="math display">\[
+\begin{aligned}
+M_X(s) &amp; = E[e^{s&#39;X}] \\ 
+  &amp; = \prod_i E[e^{s_iX_i}] \\
+  &amp; = \prod_i e^{\frac{1}{2}s_i^2} \\
+  &amp; = e^{\frac{1}{2}s&#39;s}.
+\end{aligned}
+\]</span> Now, for the PDF we use the independence assumption to write the joing as product of the marginals <span class="math display">\[
+\begin{aligned}
+p_X(x)  &amp; = \prod_i p_{X_i}(x_i) \\
+  &amp; = \prod_i \frac{1}{\sqrt{2\pi}} e^{\frac{1}{2}x_i^2} \\ 
+  &amp; = \frac{1}{(2\pi)^{n/2}} e^{\frac{1}{2}\sum_i x_i^2} \\ 
+  &amp; =  \frac{1}{(2\pi)^{n/2}} e^{\frac{1}{2}x&#39;x}.
+\end{aligned}
+\]</span></p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-16" class="exercise"><strong>Exercise 1.13  (Multivariate normal)  </strong></span> A random vector <span class="math inline">\(x\)</span> has multivariate normal distribution if and only if every linear combination of its elements is univariate normal, i.e. if the scalar value <span class="math inline">\(z = a^Tx\)</span> is normally distributed for all possible <span class="math inline">\(x\)</span>. Prove that this implies that <span class="math inline">\(x\)</span> is multivariate normal if and only if its moment generating function takes the form <span class="math inline">\(M_X(s) = \exp\{s^T\mu + s^T\Sigma s / 2\}\)</span>, where <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span> are the mean and covariance of <span class="math inline">\(x\)</span>. 
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We first show that the definition implies the required form of the MGF. Let <span class="math inline">\(\mu = E[X]\)</span> and <span class="math inline">\(\Sigma = \mathrm{Cov}(X)\)</span>. Independently of the distribution of <span class="math inline">\(X\)</span>, the properties of expectation imply that <span class="math inline">\(E[a&#39;X] = a&#39;\mu\)</span> and <span class="math inline">\(\mathrm{Var}(a&#39;X) = a&#39;\Sigma a\)</span>.</p>
+<p>I will also show that for any <span class="math inline">\(Y \sim N(\mu, \sigma^2)\)</span>, the MGF is <span class="math display">\[
+M_Y(s) = e^{\mu s+ \frac{s^2\sigma^2}{2}}.
+\]</span> To prove the above, we use the previous exercise for the standard normal and rewrite <span class="math display">\[
+M_Y(s)= E[e^{sY}] = e^{s\mu}E[e^{(s\sigma)\frac{Y - \mu}{\sigma}}] =  e^{s\mu} e^{\frac{s^2\sigma^2}{2}}.
+\]</span> Now we go back to the proof. Assuming <span class="math inline">\(s&#39;X\)</span> is Normal for any <span class="math inline">\(s\in\mathbb{R}^n\)</span>, then <span class="math inline">\(s&#39;X \sim \mathrm{Normal}(s&#39;\mu, s&#39;\Sigma s)\)</span>, so <span class="math display">\[
+M_{X}(s) := E[e^{s&#39;X}] = M_{s&#39;X}(1) = e^{s&#39;\mu + \frac{1}{2}s&#39;\Sigma s}. 
+\]</span> We now need to prove the converse. Assume the MGF takes the specified form and let <span class="math inline">\(a\in\mathbb{R}^n\)</span> be any vector. Then <span class="math display">\[
+M_{a&#39;X}(s) = M_X(sa) = e^{(sa)&#39;\mu + \frac{1}{2}(as)&#39;\Sigma(as)} = e^{s (a&#39;\mu) + \frac{1}{2} s^2 (a&#39;\Sigma a)}. 
+\]</span> From the uniqueness of the MGFs, it follows that <span class="math inline">\(a&#39;X \sim \mathrm{Normal}(a&#39;\mu, a&#39;\Sigma a)\)</span>.</p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-17" class="exercise"><strong>Exercise 1.14  (Relationship to standard multivariate normal)  </strong></span> An equivalent statement is that a random vector <span class="math inline">\(x\)</span> has multivariate normal distribution if and only if it can be written in the form <span class="math display">\[x = Dz + \mu\]</span> for some matrix <span class="math inline">\(D\)</span>, real-valued vector <span class="math inline">\(\mu\)</span>, and vector <span class="math inline">\(z\)</span> distributed according to a standard multivariate normal. Express the moment generating function of <span class="math inline">\(x\)</span> in terms of <span class="math inline">\(D\)</span>, and uncover the relationship between <span class="math inline">\(D\)</span> and <span class="math inline">\(\Sigma\)</span>. Use this result to suggest a method for generating multivariate normal random variables, if you have a method for generating Normal(0,1) univariate random variables.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We use that <span class="math display">\[
+s&#39;X = s&#39;(DZ + \mu)= t&#39;Z + s&#39;\mu \quad \text{ with } t = D&#39;s.
+\]</span> Hence <span class="math display">\[
+M_X(s) = e^{s&#39;\mu}M_Z(t) = e^{s&#39;\mu + \frac{1}{2}t&#39;t} = e^{s&#39;\mu + \frac{1}{2}s&#39;(DD&#39;)s}.
+\]</span> From here, we see that <span class="math inline">\(DD&#39;\)</span> must satisfy <span class="math inline">\(DD&#39; = \Sigma\)</span>.</p>
+<p>This suggests the following approach for generating multivariate normal variables <span class="math inline">\(X\sim \mathrm{Normal}(\mu, \Sigma)\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Find a factorization (e.g., using Cholesky) <span class="math inline">\(\Sigma = DD&#39;\)</span>.</li>
+<li>Generate independent standard normal <span class="math inline">\(Z\)</span></li>
+<li>Return <span class="math inline">\(X = DZ + \mu\)</span>.</li>
+</ol>
+<hr />
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-18" class="exercise"><strong>Exercise 1.15  </strong></span> Use the result from the previous question to show that the PDF of a multivarite normal random vector <span class="math inline">\(x\sim\mbox{Normal}(\mu, \Sigma)\)</span> takes the form</p>
+<span class="math display">\[p(x) = \frac{1}{(2\pi)^{n/2}}|\Sigma|^{-1/2}\exp\left\{-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right\},\]</span> by using a change-of-variables from the standard multivariate normal distribution.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. For this we’ll need <span class="math inline">\(D\)</span> to be invertible, which is always possible as long as <span class="math inline">\(\Sigma\)</span> is invertible.</p>
+<p>The transformation <span class="math inline">\(g\colon: Z\mapsto DZ + \mu\)</span> has Jacobian Matrix <span class="math inline">\(D\)</span>, so the change of volume factor is <span class="math display">\[
+\left\lvert \frac{d}{dx}g^{-1}(x)\right\rvert = \lvert D \rvert ^{-1} = (\lvert D \rvert^2) ^{-1/2} = \lvert\Sigma\rvert ^{-1/2},
+\]</span> where we used standard properties of the determinant (determimnant of the transpose is the smame, determinant of product of invertible matrices is the product of determinants, etc.). Now, using the change of variable formula we get <span class="math display">\[
+\begin{aligned}
+f_X(x) &amp; = \lvert \Sigma \rvert  ^{-1/2}  f_Z(g^{-1}(x))  \\ 
+&amp; = (2\pi)^{-n/2} \lvert \Sigma \rvert  ^{-1/2} e^{-\frac{1}{2}(D^{-1}(x - \mu))&#39;(D^{-1}(x - \mu))} \\
+&amp; = (2\pi)^{-n/2} \lvert \Sigma \rvert  ^{-1/2} e^{-\frac{1}{2}(x - \mu)&#39;(DD&#39;)^{-1}(x - \mu)} \\
+&amp; = (2\pi)^{-n/2} \lvert \Sigma \rvert  ^{-1/2} e^{-\frac{1}{2}(x - \mu)&#39;\Sigma^{-1}(x - \mu)}.
+\end{aligned}
+\]</span></p>
+<hr />
+<div id="manipulation-of-multivariate-normals" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Manipulation of multivariate normals</h3>
+<p>Like its univariate counterpart, the multivariate normal distribution is closed under a number of operations, which we will explore here.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-19" class="exercise"><strong>Exercise 1.16  (marginal distribution)  </strong></span> Let us assume that <span class="math inline">\(x\sim \mbox{Normal}(\mu, \Sigma)\)</span>, and let us partition <span class="math inline">\(x\)</span> into 2 components <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>. Let us similarly partition <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> so that</p>
+<p><span class="math display">\[\mu  = (\mu_1, \mu_2)^T \qquad \qquad \Sigma = \begin{pmatrix}\Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22}\end{pmatrix} = \begin{pmatrix}\Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{12}^T &amp; \Sigma_{22}\end{pmatrix}\]</span></p>
+Derive the marginal distribution of <span class="math inline">\(x_1\)</span>.
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We choose <span class="math inline">\(a = (1,...,1,0,...0)\)</span> where there is a one for each entry of block noe and a zero for each entry of block two. Then <span class="math inline">\(a&#39;x = x_1\)</span>. We know <span class="math inline">\(a&#39;x = x_1\)</span> has to be Normal with mean <span class="math inline">\(a&#39;\mu = \mu_1\)</span> and variance <span class="math inline">\(a&#39;\Sigma a = \Sigma_{11}\)</span>.</p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-20" class="exercise"><strong>Exercise 1.17  (Precision matrix)  </strong></span> Earlier, we chose to express a univariate normal random variable in terms of its precision, to make math easier. We can also express a multivariate normal in terms of a precision matrix <span class="math inline">\(\Omega = \Sigma^{-1}\)</span>. Partition <span class="math inline">\(\Omega\)</span> as <span class="math display">\[\Omega = \begin{pmatrix}\Omega_{11} &amp; \Omega_{12} \\ \Omega_{12}^T &amp; \Omega_{22}\end{pmatrix}\]</span> and express <span class="math inline">\(\Omega_{11}\)</span>, <span class="math inline">\(\Omega_{12}\)</span> and <span class="math inline">\(\Omega_{22}\)</span> in terms of <span class="math inline">\(\Sigma_{11}\)</span>, <span class="math inline">\(\Sigma_{12}\)</span> and <span class="math inline">\(\Sigma_{22}\)</span>. 
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We require <span class="math display">\[
+\Omega \Sigma = \Sigma \Omega = I.
+\]</span> which by block multiplication gives <span class="math display">\[
+\Omega_{11} \Sigma_{11} + \Omega_{12} \Sigma_{21} = \Omega_{12} \Sigma_{21} + \Omega_{22} \Sigma_{22} = I \\
+\Omega_{21} \Sigma_{11} + \Omega_{22} \Sigma_{21} = \Omega_{11} \Sigma_{12} + \Omega_{12} \Sigma_{22} = 0 
+\]</span> Also we have a symmetry condition <span class="math display">\[
+\Omega_{12} = \Omega_{21}&#39;.
+\]</span> After some standard manipulations, we solve the linear system and obtain <span class="math display">\[
+\Omega_{11} = \Sigma_{11} - \Sigma_{12}\Sigma^{-1}_{22}\Sigma_{12}&#39; \\
+\Omega_{22} = \Sigma_{22} - \Sigma_{21}\Sigma^{-1}_{11}\Sigma_{21}&#39;
+\]</span> and <span class="math display">\[
+\Omega_{21} = -\Sigma_{22}^{-1}\Sigma_{21}\Omega_{11} \\
+\Omega_{12} = \Omega_{21}&#39; = - \Omega_{11}\Sigma_{12}\Sigma_{11}^{-1}.
+\]</span></p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-21" class="exercise"><strong>Exercise 1.18  (Conditional distribution)  </strong></span>The conditional distribution of <span class="math inline">\(x_1|x_2\)</span> is also normal, with mean <span class="math inline">\(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2-\mu_2)\)</span> and covariance <span class="math inline">\(\Sigma_{11} - \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{12}^T\)</span>. Prove this for the case where <span class="math inline">\(\mu\)</span> is zero (the general case isn’t really harder, just more tedious). 
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>. We leverage the precision matrix notation and the results from the previous exercises, and the completing the square formula for the matrix case. <span class="math display">\[
+\begin{aligned}
+p(x_1 \mid x_2) &amp; \propto p(x_1, x_2) \\
+&amp; \propto \exp\left\{ - \frac{1}{2} (x_1,x_2)&#39;\Omega (x_1, x_2) \right\} \\
+&amp; = \exp\left\{- \frac{1}{2} (x_1,x_2)&#39;\begin{pmatrix} \Omega_{11} &amp; \Omega_{12} \\ \Omega_{21} &amp; \Omega_{22} \end{pmatrix} (x_1, x_2) \right\} \\
+&amp; \propto \exp\left\{ - \frac{1}{2} \left(x_1&#39;\Omega_{11}x_1 + 2 x_1&#39;\Omega_{12}x_2 \right) \right\} \\
+ &amp; \propto \exp\left\{- \frac{1}{2}(x_1 + \Omega_{11}^{-1}\Omega_{12}x_2)&#39;\Omega_{11}(x_1 + \Omega_{11}^{-1}\Omega_{12}x_2) \right\} \\
+ &amp; \propto \exp\left\{-  \frac{1}{2} (x_1 - \Sigma_{12}\Sigma_{11}^{-1}x_2)&#39;\Omega_{11}(x_1 - \Sigma_{12}\Sigma_{11}^{-1}x_2) \right\}.
+\end{aligned}
+\]</span> Therefore <span class="math display">\[
+x_1 \mid x_2 \sim \mathrm{Normal}\left(\Sigma_{12}\Sigma_{11}^{-1}x_2, \Omega_{11} \right).
+\]</span> where <span class="math inline">\(\Omega_{11}\)</span> is the precision we computed earlier <span class="math inline">\(\Omega_{11} = \Sigma_{11} - \Sigma_{12}\Sigma^{-1}_{22}\Sigma_{12}&#39;\)</span>.</p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-22" class="exercise"><strong>Exercise 1.19  (Conjugacy)  </strong></span>If <span class="math inline">\(x\sim \mbox{Normal}(\mu, \Sigma)\)</span> and <span class="math inline">\(\mu \sim \mbox{Normal}(\mu_0,\Sigma_0)\)</span>, derive the posterior of <span class="math inline">\(\mu|x\)</span> .
+</div>
+
+<hr />
+<p><strong>Solution</strong>*. Direct computation with Bayes’ rule <span class="math display">\[
+\begin{aligned}
+p(\mu \mid x) &amp; \propto p(x \mid \mu)p(\mu) \\
+  &amp; \propto \exp\left\{- \frac{1}{2}(x-\mu)&#39;\Omega (x -\mu) - \frac{1}{2}(\mu-\mu_0)&#39;\Omega_0(\mu - \mu_0)\right\} \\
+    &amp; \propto \exp\left\{- \frac{1}{2}\left( \mu&#39;(\Omega + \Omega_0)\mu - 2(\Omega x + \Omega_0\mu_0)&#39;\mu  \right)\right\} \\
+        &amp; \propto \exp\left\{- \frac{1}{2}\left(\left(\mu - (\Omega + \Omega_0)^{-1}(\Omega x + \Omega_0 \mu_0)\right)&#39; (\Omega + \Omega_0) \left(\mu - (\Omega + \Omega_0)^{-1}(\Omega x + \Omega_0 \mu_0)\right)\right)\right\}.
+\end{aligned}
+\]</span> Hence <span class="math display">\[
+\mu \mid x \sim \mathrm{Normal}\left((\Omega + \Omega_0)^{-1}(\Omega x + \Omega_0 \mu_0), \Omega + \Omega_0 \right)
+\]</span> Again, this a nice expression when interpreted as weighed means.</p>
+<hr />
+</div>
+</div>
+<div id="frequentist-estimation-and-uncertainty-quantification" class="section level2">
+<h2><span class="header-section-number">1.4</span> Frequentist estimation and uncertainty quantification</h2>
+<p>In this section, we’re going to go over basic frequentist approaches to inference, with a focus on multiple linear regression (since we’re next going to look at Bayesian regression). Some of this should be familiar to you, although we will go into quite some depth. Throughout the remainder of this section, we are going to assume our data follow a linear model, of the form <span class="math display">\[y_i = x_i^T\beta + \epsilon_i,\qquad i=1,\dots,N\]</span></p>
+<p>There are a number of options for estimating <span class="math inline">\(\beta\)</span>. Three commonly used techniques are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Method of Moments</strong>: Select <span class="math inline">\(\hat{\beta}\)</span> so that the empirical moments of the observations match the theoretical moments.</li>
+<li><strong>Maximum likelihood</strong>: Assume a model for generating the <span class="math inline">\(\epsilon_i\)</span>, and find the value of <span class="math inline">\(\hat{\beta}\)</span> that maximizes the likelihood.</li>
+<li><strong>Loss function</strong>: Construct a loss function between the <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x_i^T\hat{\beta}\)</span>, and minimize that loss function.</li>
+</ol>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-23" class="exercise"><strong>Exercise 1.20  (method of moments)  </strong></span> To obtain the theoretical moments, we can assume that <span class="math inline">\(E[y_i|x_i] = x_i^T\beta\)</span>, implying that the covariance between the predictors <span class="math inline">\(x_i\)</span> and the residuals is zero. By setting the sample covariance between the <span class="math inline">\(x_i\)</span> and the <span class="math inline">\(\epsilon_i\)</span> to zero, derive a method of moments estimator <span class="math inline">\(\hat{\beta}_{MM}\)</span>
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-24" class="exercise"><strong>Exercise 1.21  (maximum likelihood)  </strong></span> Show that, if we assume <span class="math inline">\(\epsilon_i\sim \mbox{Normal}(0,\sigma^2)\)</span>, then the ML estimator <span class="math inline">\(\hat{\beta}_{ML}\)</span> is equivalent to the method of moments estimator.
+</div>
+
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-25" class="exercise"><strong>Exercise 1.22  (Least squares loss function)  </strong></span> Show that if we assume a quadratic loss function, i.e. <span class="math inline">\(\hat{\beta}_{LS} = \arg\min_{\beta\in \mathbb{R}^p}\sum_{i=1}^N(y_i - x_i^T\beta)^2\)</span>, we recover the same estimator again.
+</div>
+
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-26" class="exercise"><strong>Exercise 1.23  (Ridge regression)  </strong></span> We may wish to add a regularization term to our loss term. For example, ridge regression involves adding an L2 penalty term, so that <span class="math display">\[\hat{\beta}_{\small{ridge}} = \arg\min_{\beta\in \mathbb{R}^p}\sum_{i=1}^N(y_i - x_i^T\beta)^2 \; s.t. \; \sum_{j=1}^p \beta_j^2 \leq t\]</span> for some <span class="math inline">\(t\geq 1\)</span>.</p>
+Reformulate this constrained optimization using a Lagrange multiplier, and solve to give an expression for <span class="math inline">\(\hat{\beta}_{\small{ridge}}\)</span>. Comparing this with the least squares estimator, comment on why this estimator might be prefered in practice.
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,15 +1,5 @@
----
-title: "Statistical Modelling II"
-author:
-- Content by Sinead Williamson
-- Solutions by Mauricio Garcia Tec
-date: "`r paste('Version:', Sys.Date())`"
-editor_options:
-  chunk_output_type: console
----
 
-
-# Preliminaries
+# List 1: Preliminaries
 
 ## Exchangeability and de Finetti's theorem
 
