@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Statistical Modelling II</title>
   <meta name="description" content="Statistical Modelling II">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.15 and GitBook 2.6.7">
 
   <meta property="og:title" content="Statistical Modelling II" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="list-1-preliminaries.html">
 
-<link rel="next" href="list-1-preliminaries.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -63,7 +63,6 @@
 
 <ul class="summary">
 <li><a href="./">SDS 383d</a></li>
-
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
 <li class="chapter" data-level="2" data-path="list-1-preliminaries.html"><a href="list-1-preliminaries.html"><i class="fa fa-check"></i><b>2</b> List 1: Preliminaries</a><ul>
@@ -78,6 +77,9 @@
 <li class="chapter" data-level="2.3.1" data-path="list-1-preliminaries.html"><a href="list-1-preliminaries.html#manipulation-of-multivariate-normals"><i class="fa fa-check"></i><b>2.3.1</b> Manipulation of multivariate normals</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="list-1-preliminaries.html"><a href="list-1-preliminaries.html#frequentist-estimation-and-uncertainty-quantification"><i class="fa fa-check"></i><b>2.4</b> Frequentist estimation and uncertainty quantification</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="list-2-bayesian-inference-in-gaussian-models.html"><a href="list-2-bayesian-inference-in-gaussian-models.html"><i class="fa fa-check"></i><b>3</b> List 2: Bayesian Inference in Gaussian Models</a><ul>
+<li class="chapter" data-level="3.1" data-path="list-2-bayesian-inference-in-gaussian-models.html"><a href="list-2-bayesian-inference-in-gaussian-models.html#bayesian-inference-in-a-simple-gaussian-model"><i class="fa fa-check"></i><b>3.1</b> Bayesian inference in a simple Gaussian model</a></li>
 </ul></li>
 </ul>
 
@@ -96,24 +98,51 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Statistical Modelling II</h1>
-<h4 class="author"><em>Mauricio Garcia Tec</em></h4>
-<h4 class="date"><em>Version: 2018-02-12</em></h4>
-</div>
-<div id="welcome" class="section level1">
-<h1><span class="header-section-number">1</span> Welcome</h1>
-<p>These notes contain my transcriptions and solutions to the exercises of the class Statistical Modelling II, taught at UT Austin during the Spring of 2018 by Sinead Williamson. If you find an error, it is most likely my own fault.</p>
-<p>If you are reading this using the html-gitbook version, please use the left menu to navigate through the lists of exercises.</p>
+<div id="list-2-bayesian-inference-in-gaussian-models" class="section level1">
+<h1><span class="header-section-number">3</span> List 2: Bayesian Inference in Gaussian Models</h1>
+<div id="bayesian-inference-in-a-simple-gaussian-model" class="section level2">
+<h2><span class="header-section-number">3.1</span> Bayesian inference in a simple Gaussian model</h2>
+<p>Let’s start with a simple, one-dimensional Gaussian example, where</p>
+<p><span class="math display">\[y_i |\mu, \sigma^2 \sim \mbox{N}(\mu,\sigma^2).\]</span></p>
+<p>We will assume that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are unknown, and will put conjugate priors on them both, so that</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \sigma^2 \sim&amp; \mbox{Inv-Gamma}(\alpha_0, \beta_0)\\
+  \mu|\sigma^2 \sim&amp; \mbox{Normal}\left(\mu_0, \frac{\sigma^2}{\kappa_0}\right)\end{aligned}
+\]</span></p>
+<p>or, equivalently, <span class="math display">\[
+\begin{aligned}
+  y_i |\mu, \omega \sim&amp; \mbox{N}(\mu,1/\omega)\\
+  \omega \sim&amp; \mbox{Gamma}(\alpha_0, \beta_0)\\
+  \mu|\omega \sim&amp; \mbox{Normal}\left(\mu_0, \frac{1}{\omega\kappa_0}\right)\end{aligned}
+\]</span></p>
+<p>We refer to this as a normal/inverse gamma prior on <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> (or a normal/gamma prior on <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\omega\)</span>). We will now explore the posterior distributions on <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\omega\)</span>(/<span class="math inline">\(\sigma^2\)</span>) – much of this will involve similar results to those obtained in the first set of exercises.</p>
 
+<div class="exercise">
+<span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 3.1  </strong></span> Derive the conditional posterior distributions <span class="math inline">\(p(\mu, \omega|y_1,\dots, y_n)\)</span> (or <span class="math inline">\(p(\mu, \sigma^2|y_1,\dots, y_n)\)</span>) and show that it is in the same family as <span class="math inline">\(p(\mu, \omega)\)</span>. What are the updated parameters <span class="math inline">\(\alpha_n, \beta_n,\mu_n\)</span> and <span class="math inline">\(\kappa_n\)</span>?
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>.</p>
+<hr />
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-2" class="exercise"><strong>Exercise 3.2  </strong></span> Derive the conditional posterior distribution <span class="math inline">\(p(\mu|\omega,y_1,\dots, y_n)\)</span> and <span class="math inline">\(p(\omega|y_1,\dots, y_n)\)</span> (or if you’d prefer, <span class="math inline">\(p(\mu|\sigma^2, y_1,\dots, y_n)\)</span> and <span class="math inline">\(p(\sigma^2|y_1,\dots, y_n)\)</span>). Based on this and the previous exercise, what are reasonable interpretations for the parameters <span class="math inline">\(\mu_0,\kappa_0, \alpha_0\)</span> and <span class="math inline">\(\beta_0\)</span>?
+</div>
+
+<hr />
+<p><strong><em>Solution</em></strong>.</p>
+<hr />
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="list-1-preliminaries.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="list-1-preliminaries.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -153,6 +182,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

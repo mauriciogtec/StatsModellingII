@@ -4,4 +4,3 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">SDS 383d</a></li>
-  output_dir: docs

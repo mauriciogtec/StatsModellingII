@@ -4,8 +4,8 @@ author: Mauricio Garcia Tec
 date: "`r paste('Version:', Sys.Date())`"
 site: bookdown::bookdown_site
 output: 
-  bookdown::gitbook:
-    output_dir: docs
+  bookdown::html_book
+  bookdown::gitbook
 github-repo: mauriciogtec/StatsModellingII
 documentclass: book
 ---
