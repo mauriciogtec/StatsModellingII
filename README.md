@@ -1,6 +1,3 @@
-# StasModellingII
-383d at UT Austin (Statistical Modelling II)
+This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/ for how to compile this example.
 
-## HOMEWORK SOLUTIONS
-
-To see my solution to the class exercises please click on this [LINK](https://mauriciogtec.github.io/StatsModellingII/Exercises/preliminaries.html)
+You can find the preview of this example at https://bookdown.org/yihui/bookdown-demo/
