@@ -636,15 +636,71 @@ There are a number of options for estimating $\beta$. Three commonly used techni
   To obtain the theoretical moments, we can assume that $E[y_i|x_i] = x_i^T\beta$, implying that the covariance between the predictors $x_i$ and the residuals is zero. By setting the sample covariance between the $x_i$ and the $\epsilon_i$ to zero, derive a method of moments estimator $\hat{\beta}_{MM}$
 ```
 
+----
+
+***Solution***. For this problem we assume $x_i$ is also random. The assumption $E[y_i \mid x_i] = x_i'\beta$ is equivalent to $E[\epsilon_i x_i] = \mathrm{Cov}(x_i, \epsilon_i) = 0$ (here $x_i$ is a vector and $\epsilon_i$ a scalar, so it's a lazy notation for saying it holds for every entry of $x_i$). To show the $E[y_i \mid x_i] = x_i'\beta$ imples $E[\epsilon_i x_i] = 0$, we verify that
+$$
+\begin{aligned}
+E [x_i \epsilon_i] & = E[x_i (y_i - x_i'\beta)] \\
+& = E[x_i (y_i - E[y_i\mid x_i])] \\ & = 
+ E [ E [x_i (y_i - E[y_i\mid x_i])\mid x_i] ] \\
+ & = E[x_i(E[y_i \mid x_i] - E[y_i\mid x_i])] \\
+ & = 0.
+\end{aligned}
+$$
+We can now use the method of moments estimator
+$$
+0 = \frac{1}{n}\sum_{i = 1}^n x_i(y_i - x_i'\beta)
+$$
+Which is equivalent to
+$$
+X'Y = \sum_i y_i x_i = \sum_i x_i x_i' \beta = X'X\beta,
+$$
+where $X$ is the matrix with $x_i'$ in its $i$-th row and $Y$ the vector with $y_i$ in its $i$-th entry. Finally, assuming $X'X$ is full rank, we obtain $\hat{\beta}_{MM}$ (which is the same as the OLS estimator)
+$$
+\hat{\beta}_{MM} = (X'X)^{-1}X'Y.
+$$
+
+----
+
+
 ```{exercise, name = 'maximum likelihood'}
   Show that, if we assume $\epsilon_i\sim \mbox{Normal}(0,\sigma^2)$, then the ML estimator $\hat{\beta}_{ML}$ is equivalent to the method of moments estimator.
 ```
 
+---
+
+***Solution***. To maximise the likelihood, we can find the argument that maximises the loglikelihood, which for the normal PDF is
+$$
+\log p(y ; \beta, \sigma^y) = -\frac{1}{2\sigma^2}\vert Y - X\beta \rVert^2 - \frac{n}{2}\log(2\pi\sigma^2).
+$$
+We can see beforehand that the minimiser on $\beta$ will not depend on $\sigma^2$, since it dependens only on the quadratic term $\lVert y - X\beta \rVert^2$.  We can use calculus (in matrix form) to solve
+$$
+0 = \nabla_\beta \log p(y; \beta, \sigma^2) = -\frac{1}{2\sigma^2}(2X'X\beta - 2Y'X),
+$$
+obtaining
+$$
+\hat{\beta}_{ML} = (X'X)^{-1}X'Y.
+$$
+As predicted, the ML estimator of $\beta$ does not depend on $\sigma^2$ (different variance assumptions would lead to the same estimator of $\beta$).
+
+---
 
 
 ```{exercise, name = 'Least squares loss function'}
   Show that if we assume a quadratic loss function, i.e.\ $\hat{\beta}_{LS} = \arg\min_{\beta\in \mathbb{R}^p}\sum_{i=1}^N(y_i - x_i^T\beta)^2$, we recover the same estimator again.
 ```
+
+
+---
+
+***Solution***. Here
+$$
+\sum_{i=1}^N(y_i - x_i^T\beta)^2 = \Vert y - X\beta \rVert^2 = -2\sigma^2 \log p (y; \beta, \sigma^2),
+$$
+so minimising the quadratic loss is equivalent to minimising the loglikelihood we we showed in the previous exercise, leading to the same solution.
+
+---
 
 ```{exercise, name = 'Ridge regression'}
   We may wish to add a regularization term to our loss term. For example, ridge regression involves adding an L2 penalty term, so that
@@ -654,3 +710,26 @@ There are a number of options for estimating $\beta$. Three commonly used techni
   Reformulate this constrained optimization using a Lagrange multiplier, and solve to give an expression for $\hat{\beta}_{\small{ridge}}$. Comparing this with the least squares estimator, comment on why this estimator might be prefered in practice.
 ```
 
+
+----
+
+***Solution***. The Lagrange function associated with this optimization problem is
+$$
+L(\beta, \lambda) = \lVert Y - X\beta\rvert^2 + \lambda(\lVert \beta \rVert^2 - t).
+$$
+We see that
+$$
+\arg\min_\beta L(\beta, \lambda) = \arg\min_\beta \lVert Y - X\beta\rvert^2 + \lambda \lVert \beta \rVert^2.
+$$
+This is true since $t$ is constant and the term $-\lambda t$ dissappears when minimising with respect to $\beta$ only. The last expression is the usual form of the loss function for Ridge regression. We see that if we solve for the minimum
+$$
+0 = \nabla_\beta (\lVert Y - X\beta\rvert^2 + \lambda \lVert \beta \rVert^2) = 2X'X\beta - 2Y'X\beta + 2\lambda\beta,
+$$
+we obtain
+$$
+\hat{\beta}_\text{Ridge} = (X'X + \lambda I)^{-1}X'Y.
+$$
+The added term $\lambda I$ acts as a contraction, the larger it is, the more $\hat{\beta}_\text{Ridge}$ gets pulled towards zero, as compared to the least squares estimator.
+
+
+----

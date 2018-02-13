@@ -535,22 +535,64 @@ p(\mu \mid x) &amp; \propto p(x \mid \mu)p(\mu) \\
 <span id="exr:unnamed-chunk-23" class="exercise"><strong>Exercise 2.20  (method of moments)  </strong></span> To obtain the theoretical moments, we can assume that <span class="math inline">\(E[y_i|x_i] = x_i^T\beta\)</span>, implying that the covariance between the predictors <span class="math inline">\(x_i\)</span> and the residuals is zero. By setting the sample covariance between the <span class="math inline">\(x_i\)</span> and the <span class="math inline">\(\epsilon_i\)</span> to zero, derive a method of moments estimator <span class="math inline">\(\hat{\beta}_{MM}\)</span>
 </div>
 
+<hr />
+<p><strong><em>Solution</em></strong>. For this problem we assume <span class="math inline">\(x_i\)</span> is also random. The assumption <span class="math inline">\(E[y_i \mid x_i] = x_i&#39;\beta\)</span> is equivalent to <span class="math inline">\(E[\epsilon_i x_i] = \mathrm{Cov}(x_i, \epsilon_i) = 0\)</span> (here <span class="math inline">\(x_i\)</span> is a vector and <span class="math inline">\(\epsilon_i\)</span> a scalar, so it’s a lazy notation for saying it holds for every entry of <span class="math inline">\(x_i\)</span>). To show the <span class="math inline">\(E[y_i \mid x_i] = x_i&#39;\beta\)</span> imples <span class="math inline">\(E[\epsilon_i x_i] = 0\)</span>, we verify that <span class="math display">\[
+\begin{aligned}
+E [x_i \epsilon_i] &amp; = E[x_i (y_i - x_i&#39;\beta)] \\
+&amp; = E[x_i (y_i - E[y_i\mid x_i])] \\ &amp; = 
+ E [ E [x_i (y_i - E[y_i\mid x_i])\mid x_i] ] \\
+ &amp; = E[x_i(E[y_i \mid x_i] - E[y_i\mid x_i])] \\
+ &amp; = 0.
+\end{aligned}
+\]</span> We can now use the method of moments estimator <span class="math display">\[
+0 = \frac{1}{n}\sum_{i = 1}^n x_i(y_i - x_i&#39;\beta)
+\]</span> Which is equivalent to <span class="math display">\[
+X&#39;Y = \sum_i y_i x_i = \sum_i x_i x_i&#39; \beta = X&#39;X\beta,
+\]</span> where <span class="math inline">\(X\)</span> is the matrix with <span class="math inline">\(x_i&#39;\)</span> in its <span class="math inline">\(i\)</span>-th row and <span class="math inline">\(Y\)</span> the vector with <span class="math inline">\(y_i\)</span> in its <span class="math inline">\(i\)</span>-th entry. Finally, assuming <span class="math inline">\(X&#39;X\)</span> is full rank, we obtain <span class="math inline">\(\hat{\beta}_{MM}\)</span> (which is the same as the OLS estimator) <span class="math display">\[
+\hat{\beta}_{MM} = (X&#39;X)^{-1}X&#39;Y.
+\]</span></p>
+<hr />
 
 <div class="exercise">
 <span id="exr:unnamed-chunk-24" class="exercise"><strong>Exercise 2.21  (maximum likelihood)  </strong></span> Show that, if we assume <span class="math inline">\(\epsilon_i\sim \mbox{Normal}(0,\sigma^2)\)</span>, then the ML estimator <span class="math inline">\(\hat{\beta}_{ML}\)</span> is equivalent to the method of moments estimator.
 </div>
 
+<hr />
+<p><strong><em>Solution</em></strong>. To maximise the likelihood, we can find the argument that maximises the loglikelihood, which for the normal PDF is <span class="math display">\[
+\log p(y ; \beta, \sigma^y) = -\frac{1}{2\sigma^2}\vert Y - X\beta \rVert^2 - \frac{n}{2}\log(2\pi\sigma^2).
+\]</span> We can see beforehand that the minimiser on <span class="math inline">\(\beta\)</span> will not depend on <span class="math inline">\(\sigma^2\)</span>, since it dependens only on the quadratic term <span class="math inline">\(\lVert y - X\beta \rVert^2\)</span>. We can use calculus (in matrix form) to solve <span class="math display">\[
+0 = \nabla_\beta \log p(y; \beta, \sigma^2) = -\frac{1}{2\sigma^2}(2X&#39;X\beta - 2Y&#39;X),
+\]</span> obtaining <span class="math display">\[
+\hat{\beta}_{ML} = (X&#39;X)^{-1}X&#39;Y.
+\]</span> As predicted, the ML estimator of <span class="math inline">\(\beta\)</span> does not depend on <span class="math inline">\(\sigma^2\)</span> (different variance assumptions would lead to the same estimator of <span class="math inline">\(\beta\)</span>).</p>
+<hr />
 
 <div class="exercise">
 <span id="exr:unnamed-chunk-25" class="exercise"><strong>Exercise 2.22  (Least squares loss function)  </strong></span> Show that if we assume a quadratic loss function, i.e. <span class="math inline">\(\hat{\beta}_{LS} = \arg\min_{\beta\in \mathbb{R}^p}\sum_{i=1}^N(y_i - x_i^T\beta)^2\)</span>, we recover the same estimator again.
 </div>
 
+<hr />
+<p><strong><em>Solution</em></strong>. Here <span class="math display">\[
+\sum_{i=1}^N(y_i - x_i^T\beta)^2 = \Vert y - X\beta \rVert^2 = -2\sigma^2 \log p (y; \beta, \sigma^2),
+\]</span> so minimising the quadratic loss is equivalent to minimising the loglikelihood we we showed in the previous exercise, leading to the same solution.</p>
+<hr />
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-26" class="exercise"><strong>Exercise 2.23  (Ridge regression)  </strong></span> We may wish to add a regularization term to our loss term. For example, ridge regression involves adding an L2 penalty term, so that <span class="math display">\[\hat{\beta}_{\small{ridge}} = \arg\min_{\beta\in \mathbb{R}^p}\sum_{i=1}^N(y_i - x_i^T\beta)^2 \; s.t. \; \sum_{j=1}^p \beta_j^2 \leq t\]</span> for some <span class="math inline">\(t\geq 1\)</span>.</p>
 Reformulate this constrained optimization using a Lagrange multiplier, and solve to give an expression for <span class="math inline">\(\hat{\beta}_{\small{ridge}}\)</span>. Comparing this with the least squares estimator, comment on why this estimator might be prefered in practice.
 </div>
 
+<hr />
+<p><strong><em>Solution</em></strong>. The Lagrange function associated with this optimization problem is <span class="math display">\[
+L(\beta, \lambda) = \lVert Y - X\beta\rvert^2 + \lambda(\lVert \beta \rVert^2 - t).
+\]</span> We see that <span class="math display">\[
+\arg\min_\beta L(\beta, \lambda) = \arg\min_\beta \lVert Y - X\beta\rvert^2 + \lambda \lVert \beta \rVert^2.
+\]</span> This is true since <span class="math inline">\(t\)</span> is constant and the term <span class="math inline">\(-\lambda t\)</span> dissappears when minimising with respect to <span class="math inline">\(\beta\)</span> only. The last expression is the usual form of the loss function for Ridge regression. We see that if we solve for the minimum <span class="math display">\[
+0 = \nabla_\beta (\lVert Y - X\beta\rvert^2 + \lambda \lVert \beta \rVert^2) = 2X&#39;X\beta - 2Y&#39;X\beta + 2\lambda\beta,
+\]</span> we obtain <span class="math display">\[
+\hat{\beta}_\text{Ridge} = (X&#39;X + \lambda I)^{-1}X&#39;Y.
+\]</span> The added term <span class="math inline">\(\lambda I\)</span> acts as a contraction, the larger it is, the more <span class="math inline">\(\hat{\beta}_\text{Ridge}\)</span> gets pulled towards zero, as compared to the least squares estimator.</p>
+<hr />
 
 </div>
 </div>
