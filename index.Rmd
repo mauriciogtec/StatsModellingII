@@ -1,18 +1,14 @@
 ---
 title: "Statistical Modelling II"
-author: Mauricio Garcia Tec
+author: "Mauricio Garcia Tec"
 date: "`r paste('Version:', Sys.Date())`"
-site: bookdown::bookdown_site
-output: 
-  bookdown::html_book
-  bookdown::gitbook
+output:
+  bookdown::gitbook: default
+  bookdown::html_book bookdown::gitbook: default
 github-repo: mauriciogtec/StatsModellingII
+site: bookdown::bookdown_site
 documentclass: book
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 # Welcome
 

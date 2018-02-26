@@ -1,4 +1,4 @@
-# List 2: Bayesian Inference in Gaussian Models
+# List two: Bayesian Inference in Gaussian Models
 
 ## Bayesian inference in a simple Gaussian model
 
