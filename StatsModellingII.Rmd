@@ -1,0 +1,83 @@
+---
+title: "Statistical Modelling II"
+author: Mauricio Garcia Tec
+date: "`r paste('Version:', Sys.Date())`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::html_book
+  bookdown::gitbook
+github-repo: mauriciogtec/StatsModellingII
+documentclass: book
+---
+
+# Welcome
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# List 1: Preliminaries
+
+Placeholder
+
+
+## Exchangeability and de Finetti's theorem
+### De Finneti's theorem
+## Exponential family of distributions
+### Cumulants and moments of exponential families
+### Conjugate priors
+## Multivariate Normal Distribution
+### Manipulation of multivariate normals
+## Frequentist estimation and uncertainty quantification
+
+<!--chapter:end:01-list1.Rmd-->
+
+
+# List 2: Bayesian Inference in Gaussian Models
+
+Placeholder
+
+
+## Bayesian inference in a simple Gaussian model
+
+<!--chapter:end:02-list2.Rmd-->
+
+---
+title: "Gibbs Part III"
+author: "Mauricio Garcia Tec"
+date: "February 21, 2018"
+output: html_document
+---
+
+
+```{r}
+library(readr)
+library(knitr) 
+library(# to visualize data nicely
+```
+
+
+```{r}
+data <- read_csv("https://raw.githubusercontent.com/sinead/sds383d/master/data/pima.csv")
+kable(data)
+```
+
+```{r}
+hyperparams = list(
+  beta0 = numeric(ncol(data)), 
+  kappa0 = 1.0, 
+  a0 = 2.0, 
+  b0 = 2.0
+)
+```
+
+```{r}
+gibbs_sampler <- 
+```
+
+
+<!--chapter:end:gibbs_3.Rmd-->
+

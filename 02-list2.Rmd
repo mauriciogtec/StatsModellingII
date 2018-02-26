@@ -34,20 +34,33 @@ We refer to this as a normal/inverse gamma prior on $\mu$ and $\sigma^2$ (or a n
 ----
 
 ***Solution***. These computations are very similar to those in the previous list. So here is the summarised version using  of the direct computation with Bayes' rule
+
 $$
 \begin{aligned}
-p(\mu, \omega \mid y) & \propto p(x\mid \mu, \omega ) p(\mu,\sigma) \\
+p(\mu, \omega \mid y) & \propto p(y \mid \mu, \omega ) p(\mu,\sigma) \\
 & = p(y\mid \mu, \omega ) p(\mu \mid \omega)p(\omega) \\
 & \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2} \sum_{i=1}^n(y_i - \mu)^2 \right\}
 \exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
-& \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2}\left(\sum_{i=1}^n(y_i - \bar{y})^2 + n(\bar{y} - \mu)^2 \right)\right\}
+& \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2}\left(\sum_{i=1}^n(y_i - \bar{y})^2 + n(\bar{y} - \mu)^2 \right)\right\} \\ & \hspace{2cm}
 \exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
-
-& \propto \omega^{n/2 + \alpha_0 - 1}\exp\left\{ -\frac{\omega}{2}\left((n + \omega / \kappa_0) \mu^2 - 2(n\bar{y} + \mu_0/\kappa_0) \mu + n\bar{y}^2 + \mu_0^2/\kappa_0   \right)\right\}
-\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\} \\
-&= \omega^{n/2 + \alpha_0 - 1}  \exp\left\{ -\frac{n\omega + \omega / \kappa_0}{2} \left(\mu - \frac{n \bar{y} + \mu_0/\kappa_0}{n + 1/\kappa_0}\right)^2 \right\}\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\}
-\end{aligned} 
+& \propto \omega^{n/2 + \alpha_0 - 1}\exp\left\{ -\frac{\omega}{2}\left(\left(n + \frac{1}{\kappa_0}\right)\mu^2 - 2\left(n\bar{y} + \frac{\mu_0}{\kappa_0}\right) \mu + n\bar{y}^2 + \frac{\mu_0^2}{\kappa_0}\right) \right\} \\ & \hspace{2cm}
+\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 \right)\omega \right\} \\
+&= \omega^{n/2 + \alpha_0 - 1}  \exp\left\{ -\frac{\omega(n + 1 / \kappa_0)}{2} \left(\mu - \frac{n \bar{y} + \mu_0/\kappa_0}{n + 1/\kappa_0}\right)^2 \right\} \\
+& \hspace{2cm} \exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{n /\kappa_0}{n + 1/\kappa_0}(\bar{y}-\mu_0)^2   \right)\omega \right\}
+\end{aligned}
 $$
+Define
+$$
+\tau_n = n + 1/\kappa_0 \\
+\mu_n = \frac{n}{\tau_n}\bar{y} + \frac{1/\kappa_0}{\tau_n}\mu_0 \\
+\alpha_n = \alpha_0+ \frac{n-1}{2}\\
+\beta_n = \beta_0 + \frac{1}{2}\left(\sum_{i=1}^n (y_i- \bar{y})^2 + \frac{n /\kappa_0}{n + 1/\kappa_0}(\bar{y}-\mu_0)^2 \right)
+$$
+It follows that 
+$$
+(\mu, \omega \mid y ) \sim \mathrm{NormalGamma}\left(\mu_n, \tau_n, \alpha_n, \beta_n \right)
+$$
+
 
 ----
 
@@ -57,6 +70,67 @@ $$
 
 ----
 
-***Solution***. 
+***Solution***. From the last expression above it's very easy to see that
+$$
+(\omega  \mid y) \sim \mathrm{Gamma}(\alpha_n, \beta_n)
+$$
+and
+$$
+(\mu \mid \omega, y) \sim \mathrm{Normal}(\mu_n, \omega / \kappa_n).
+$$
+where $\kappa_n = 1 /\tau_n$.
 
 ----
+
+\begin{exercise}
+  Show that the marginal distribution over $\mu$ is a centered, scaled $t$-distribution (note we showed something very similar in the last set of exercises!), i.e.\
+  $$p(\mu) \propto \left(1+\frac{1}{\nu}\frac{(\mu-m)^2}{s^2}\right)^{-\frac{\nu+1}{2}}$$
+  What are the location parameter $m$, scale parameter $s$, and degree of freedom $\nu$?
+\end{exercise}
+
+\begin{exercise}
+  The marginal posterior $p(\mu|y_1,\dots, y_n)$ is also a centered, scaled $t$-distribution. Find the updated location, scale and degrees of freedom.
+\end{exercise}
+
+\begin{exercise}
+  Derive the posterior predictive distribution $p(y_{n+1},\dots, y_{n+m}|y_1,\dots, y_{m})$.
+\end{exercise}
+
+\begin{exercise}
+  Derive the marginal distribution over $y_1,\dots, y_n$.
+\end{exercise}
+
+
+
+\section{Bayesian inference in a multivariate Gaussian model}
+
+Let's now assume that each $y_i$ is a $d$-dimensional vector, such that
+
+$$y_i \sim \mbox{N}(\mu, \Sigma)$$
+for $d$-dimensional mean vector $\mu$ and $d\times d$ covariance matrix $\Sigma$.
+
+We will put an \textit{inverse Wishart} prior on $\Sigma$. The inverse Wishart distribution is a distribution over positive-definite matrices parametrized by $\nu_0>d-1$ degrees of freedom and  positive definite matrix $\Lambda_0^{-1}$, with pdf
+
+$$p(\Sigma|\nu_0, \Lambda_0^{-1}) = \frac{|\Lambda|^{\nu_0/2}}{2^{(\nu_0 +d)/2}\Gamma_d(\nu_0/2)}|\Sigma|^{-\frac{\nu_0+d+1}{2}}e^{-\frac{1}{2}\mbox{tr}(Lambda\Sigma^{-1})}$$
+
+where
+$\Gamma_d(x) = \pi^{d(d-1)/4}\prod_{i=1}^d\Gamma\left(x-\frac{j-1}{2}\right)$.
+\begin{exercise}
+  Show that in the univariate case, the inverse Wishart distribution reduces to the inverse gamma distribution.
+\end{exercise}
+
+\begin{exercise}
+  Let $\Sigma \sim \mbox{Inv-Wishart}(\nu_0, \Lambda_0^{-1})$ and $\mu|\Sigma \sim \mbox{N}(\mu_0, \Sigma/\kappa_0)$, so that
+
+  $$p(\mu,\Sigma) \propto |\Sigma|^{-\frac{\nu_0+d+1}{2}}e^{-\frac{1}{2}\mbox{tr}(\Lambda_0\Sigma^{-1}) + \frac{\kappa_0}{2}(\mu-\mu_0)^T\Sigma^{-1}(\mu-\mu_0)}$$
+
+  and let
+  $$y_i \sim \mbox{N}(\mu, \Sigma)$$
+  Show that $p(\mu, \Sigma|y_1,\dots,y_n)$ is also normal-inverse Wishart distributed, and give the form of the updated parameters $\mu_n, \kappa_n, \nu_n$ and $\Lambda_n$. It will be helpful to note that
+
+  $$\begin{aligned}\sum_{i=1}^n(y_i-\mu)^T\Sigma^{-1}(y_i-\mu) =& \sum_{i=1}^n\sum_{j=1}^d\sum_{k=1}^d(x_{ij}-\mu_j)(\Sigma^{-1})_{jk}(x_{ik}-\mu_k)\\
+    =& \sum_{j=1}^d\sum_{k=1}^d (\Sigma^{-1})_{ab}\sum_{i=1}^n(x_{ij}-\mu_j)(x_{ik}-\mu_k)\\
+    =& tr\left(\Sigma^{-1}\sum_{i=1}^n(x_i-\mu)(x_i-\mu)^T\right)\end{aligned}$$
+  
+  Based on this, give interpretations for the prior parameters.
+\end{exercise}
