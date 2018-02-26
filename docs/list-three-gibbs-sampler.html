@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Statistical Modelling II</title>
+  <meta name="description" content="Statistical Modelling II">
+  <meta name="generator" content="bookdown 0.7.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Statistical Modelling II" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="mauriciogtec/StatsModellingII" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistical Modelling II" />
+  
+  
+  
+
+<meta name="author" content="Mauricio Garcia Tec">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="list-two-bayesian-inference-in-gaussian-models.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html"><i class="fa fa-check"></i><b>2</b> List one: Preliminaries</a><ul>
+<li class="chapter" data-level="2.1" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#exchangeability-and-de-finettis-theorem"><i class="fa fa-check"></i><b>2.1</b> Exchangeability and de Finetti’s theorem</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#de-finnetis-theorem"><i class="fa fa-check"></i><b>2.1.1</b> De Finneti’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#exponential-family-of-distributions"><i class="fa fa-check"></i><b>2.2</b> Exponential family of distributions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#cumulants-and-moments-of-exponential-families"><i class="fa fa-check"></i><b>2.2.1</b> Cumulants and moments of exponential families</a></li>
+<li class="chapter" data-level="2.2.2" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#conjugate-priors"><i class="fa fa-check"></i><b>2.2.2</b> Conjugate priors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>2.3</b> Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#manipulation-of-multivariate-normals"><i class="fa fa-check"></i><b>2.3.1</b> Manipulation of multivariate normals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="list-one-preliminaries.html"><a href="list-one-preliminaries.html#frequentist-estimation-and-uncertainty-quantification"><i class="fa fa-check"></i><b>2.4</b> Frequentist estimation and uncertainty quantification</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="list-two-bayesian-inference-in-gaussian-models.html"><a href="list-two-bayesian-inference-in-gaussian-models.html"><i class="fa fa-check"></i><b>3</b> List two: Bayesian Inference in Gaussian Models</a><ul>
+<li class="chapter" data-level="3.1" data-path="list-two-bayesian-inference-in-gaussian-models.html"><a href="list-two-bayesian-inference-in-gaussian-models.html#bayesian-inference-in-a-simple-gaussian-model"><i class="fa fa-check"></i><b>3.1</b> Bayesian inference in a simple Gaussian model</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html"><i class="fa fa-check"></i><b>4</b> List three: Gibbs sampler</a><ul>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#load-data-and-explore"><i class="fa fa-check"></i>Load Data and Explore</a></li>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#gibbs-sampler"><i class="fa fa-check"></i>Gibbs Sampler</a></li>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#a-simpler-gibbs-sampler"><i class="fa fa-check"></i>A simpler Gibbs Sampler</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Modelling II</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="list-three-gibbs-sampler" class="section level1">
+<h1><span class="header-section-number">4</span> List three: Gibbs sampler</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readr)
+<span class="kw">library</span>(knitr) 
+<span class="kw">library</span>(mvtnorm)
+<span class="kw">library</span>(Matrix)
+<span class="kw">library</span>(progress)</code></pre></div>
+<div id="load-data-and-explore" class="section level3 unnumbered">
+<h3>Load Data and Explore</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from Github</span>
+data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/sinead/sds383d/master/data/pima.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(data)</code></pre></div>
+<pre><code>##  times_pregnant   plasma_glucose  dia_blood_pressure triceps_skinfold
+##  Min.   : 0.000   Min.   :  0.0   Min.   :  0.00     Min.   : 0.00   
+##  1st Qu.: 1.000   1st Qu.: 99.0   1st Qu.: 62.00     1st Qu.: 0.00   
+##  Median : 3.000   Median :117.0   Median : 72.00     Median :23.00   
+##  Mean   : 3.845   Mean   :120.9   Mean   : 69.11     Mean   :20.54   
+##  3rd Qu.: 6.000   3rd Qu.:140.2   3rd Qu.: 80.00     3rd Qu.:32.00   
+##  Max.   :17.000   Max.   :199.0   Max.   :122.00     Max.   :99.00   
+##  serum_insulin        bmi           pedigree           age       
+##  Min.   :  0.0   Min.   : 0.00   Min.   :0.0780   Min.   :21.00  
+##  1st Qu.:  0.0   1st Qu.:27.30   1st Qu.:0.2437   1st Qu.:24.00  
+##  Median : 30.5   Median :32.00   Median :0.3725   Median :29.00  
+##  Mean   : 79.8   Mean   :31.99   Mean   :0.4719   Mean   :33.24  
+##  3rd Qu.:127.2   3rd Qu.:36.60   3rd Qu.:0.6262   3rd Qu.:41.00  
+##  Max.   :846.0   Max.   :67.10   Max.   :2.4200   Max.   :81.00  
+##  class_variable 
+##  Min.   :0.000  
+##  1st Qu.:0.000  
+##  Median :0.000  
+##  Mean   :0.349  
+##  3rd Qu.:1.000  
+##  Max.   :1.000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs</span>(data)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Let’s save features and targets in arrays <span class="math inline">\(X\)</span> and <span class="math inline">\(y\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Features</span>
+X &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>class_variable) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">data.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">Matrix</span>()
+
+<span class="co"># Target</span>
+y &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(class_variable) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">Matrix</span>()
+
+<span class="co"># Problem dimensions</span>
+n &lt;-<span class="st"> </span><span class="kw">nrow</span>(X)
+d &lt;-<span class="st"> </span><span class="kw">ncol</span>(X)</code></pre></div>
+</div>
+<div id="gibbs-sampler" class="section level3 unnumbered">
+<h3>Gibbs Sampler</h3>
+<p>Hyperparameters of prior</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Matrix package is necessary for stability and efficiency</span>
+prior_hyperparams &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="co"># Z ~ N(x&#39;beta, tau * I)</span>
+  <span class="co"># beta ~ N(beta0, tau * kappa_0)</span>
+  <span class="co"># tau ~ Gamma(a_0, b_0);</span>
+  <span class="dt">kappa_0 =</span> <span class="fl">10.0</span> <span class="op">*</span><span class="st"> </span><span class="kw">Diagonal</span>(d),
+  <span class="dt">beta_0 =</span> <span class="kw">Matrix</span>(<span class="kw">numeric</span>(d)), <span class="co"># zeros of size d x 1</span>
+  <span class="dt">a_0 =</span> <span class="fl">0.1</span>, 
+  <span class="dt">b_0 =</span> <span class="fl">5.0</span>
+)</code></pre></div>
+<p>Conditional distributions of the latent variable.</p>
+<p><span class="math display">\[
+z_i \mid \beta,\tau, x_i, y_i \sim = \begin{cases}
+N(x_i&#39;\beta, \tau) \text{ truncated to } (0,+\infty) &amp; \text{ if } y_i = 1 \\
+N(x_i&#39;\beta, \tau) \text{ truncated to } (-\infty,0) &amp; \text{ if } y_i = 0 
+\end{cases}
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z_conditional &lt;-<span class="st"> </span><span class="cf">function</span>(beta, tau, X, y) {
+  mean &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>beta
+  sd &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>tau)
+  sign &lt;-<span class="st"> </span><span class="kw">ifelse</span>(y <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)
+  <span class="kw">map_dbl</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(y), <span class="cf">function</span>(i) sign[i] <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>, mean[i], sd)))
+}</code></pre></div>
+<p>The posterior of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\tau\)</span> depend only on an updated version of the hyperparameters. Here they are</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">update_hyperparams &lt;-<span class="st"> </span><span class="cf">function</span>(prior_hyperparams, X, z) {
+  ph &lt;-<span class="st"> </span>prior_hyperparams
+  kappa_n &lt;-<span class="st"> </span><span class="kw">crossprod</span>(X) <span class="op">+</span><span class="st"> </span>ph<span class="op">$</span>kappa_<span class="dv">0</span> 
+  beta_n &lt;-<span class="st"> </span><span class="kw">solve</span>(kappa_n, <span class="kw">crossprod</span>(X, z) <span class="op">+</span><span class="st"> </span>ph<span class="op">$</span>kappa_<span class="dv">0</span> <span class="op">%*%</span><span class="st"> </span>ph<span class="op">$</span>beta_<span class="dv">0</span>)  
+  a_n &lt;-<span class="st"> </span>ph<span class="op">$</span>a_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="kw">nrow</span>(X) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
+  b_n &lt;-<span class="st"> </span>ph<span class="op">$</span>b_<span class="dv">0</span> <span class="op">+</span>
+<span class="st">    </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">drop</span>(<span class="kw">sum</span>(z<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">t</span>(ph<span class="op">$</span>beta_<span class="dv">0</span>) <span class="op">%*%</span><span class="st"> </span>ph<span class="op">$</span>kappa_<span class="dv">0</span> <span class="op">%*%</span><span class="st"> </span>ph<span class="op">$</span>beta_<span class="dv">0</span> <span class="op">-</span><span class="st"> </span><span class="kw">t</span>(beta_n) <span class="op">%*%</span><span class="st"> </span>kappa_n <span class="op">%*%</span><span class="st"> </span>beta_n)
+  <span class="kw">list</span>(<span class="dt">kappa_n =</span> kappa_n, <span class="dt">beta_n =</span> beta_n, <span class="dt">a_n =</span> a_n, <span class="dt">b_n =</span> b_n)
+}</code></pre></div>
+<p>Now we can easily sample from beta</p>
+<p><span class="math display">\[
+\beta \mid \tau, z_i, x_i \sim N(\beta_n, \tau \kappa_n)
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta_conditional &lt;-<span class="st"> </span><span class="cf">function</span>(tau, posterior_hyperparams) {
+  sigma =<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">solve</span>(posterior_hyperparams<span class="op">$</span>kappa_n <span class="op">*</span><span class="st"> </span>tau))
+  mean =<span class="st"> </span><span class="kw">drop</span>(posterior_hyperparams<span class="op">$</span>beta_n)
+  <span class="kw">drop</span>(<span class="kw">rmvnorm</span>(<span class="dv">1</span>, mean, sigma))
+}</code></pre></div>
+<p>And now for <span class="math inline">\(\tau\)</span></p>
+<p><span class="math display">\[
+\tau \mid z_i, x_i \sim \textit{Gamma}(a_n, b_n)
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tau_conditional &lt;-<span class="st"> </span><span class="cf">function</span>(posterior_hyperparams) {
+  <span class="kw">rgamma</span>(<span class="dv">1</span>, <span class="dt">shape =</span> posterior_hyperparams<span class="op">$</span>a_n, <span class="dt">rate =</span> posterior_hyperparams<span class="op">$</span>b_n)
+}</code></pre></div>
+<p>Our full posterior ir <span class="math display">\[
+p(\tau, \beta, z, \mid X, y)
+\]</span> which we can sample iteratively from the three conditionals above.</p>
+<p>Now the Gibbs sampler iteration is easy</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gibbs_sampler &lt;-<span class="st"> </span><span class="cf">function</span>(X, y, prior_hyperparams, niter) {
+  <span class="co"># Progress bar</span>
+  pb &lt;-<span class="st"> </span>progress_bar<span class="op">$</span><span class="kw">new</span>(<span class="dt">total =</span> niter)
+  
+  <span class="co"># Reserve space for traces</span>
+  tau &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, niter)
+  beta &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, niter)
+  z &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, niter)
+  
+  <span class="co"># Initialize</span>
+  params &lt;-<span class="st"> </span>prior_hyperparams
+  <span class="kw">names</span>(params) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;_0&quot;</span>, <span class="st">&quot;_n&quot;</span>, <span class="kw">names</span>(params))
+  tau[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">tau_conditional</span>(params)
+  beta[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">beta_conditional</span>(tau[[<span class="dv">1</span>]], params)
+  z[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">z_conditional</span>(beta[[<span class="dv">1</span>]], tau[[<span class="dv">1</span>]], X, y)
+  params &lt;-<span class="st"> </span><span class="kw">update_hyperparams</span>(prior_hyperparams, X, z[[<span class="dv">1</span>]])
+  
+  <span class="co"># Iterate</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>niter) {
+    tau[[i]] &lt;-<span class="st"> </span><span class="kw">tau_conditional</span>(params)
+    beta[[i]] &lt;-<span class="st"> </span><span class="kw">beta_conditional</span>(tau[[i]], params)
+    z[[i]] &lt;-<span class="st"> </span><span class="kw">z_conditional</span>(beta[[i]], tau[[i]], X, y)
+    params &lt;-<span class="st"> </span><span class="kw">update_hyperparams</span>(prior_hyperparams, X, z[[i]])
+    pb<span class="op">$</span><span class="kw">tick</span>()
+  }
+  
+  <span class="kw">list</span>(<span class="dt">beta =</span> beta, <span class="dt">tau =</span> tau, <span class="dt">z =</span> z)
+}</code></pre></div>
+<p>Now run it!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_iter &lt;-<span class="st"> </span><span class="dv">1000</span>
+gs &lt;-<span class="st"> </span><span class="kw">gibbs_sampler</span>(X, y, prior_hyperparams, n_iter)
+<span class="kw">plot</span>(<span class="kw">as.numeric</span>(gs<span class="op">$</span>tau[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)]), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta &lt;-<span class="st"> </span><span class="kw">Reduce</span>(cbind, gs<span class="op">$</span>beta)
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">2</span>))
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>) {
+  series &lt;-<span class="st"> </span>beta[i, ]
+  series_name &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s mean: %0.2f, sd: %0.2f:&quot;</span>, <span class="kw">rownames</span>(beta)[i], <span class="kw">mean</span>(series), <span class="kw">sd</span>(series))
+  <span class="kw">plot</span>(series, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> series_name)
+  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(series), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+}</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="768" /></p>
+<p>Predictions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(beta, <span class="dv">1</span>, mean)
+y_hat &lt;-<span class="st"> </span><span class="kw">ifelse</span>(X <span class="op">%*%</span><span class="st"> </span>beta_mean <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)
+tbl &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">drop</span>(y), y_hat)
+<span class="kw">print</span>(tbl)</code></pre></div>
+<pre><code>##    y_hat
+##       0   1
+##   0 432  68
+##   1 170  98</code></pre>
+<p>Total accuracy is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(tbl)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(tbl)</code></pre></div>
+<pre><code>## [1] 0.6901042</code></pre>
+</div>
+<div id="a-simpler-gibbs-sampler" class="section level2 unnumbered">
+<h2>A simpler Gibbs Sampler</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Matrix package is necessary for stability and efficiency</span>
+prior_hyperparams2 &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="co"># Z ~ N(x&#39;beta, tau * I)</span>
+  <span class="co"># beta ~ N(beta0, tau * kappa_0)</span>
+  <span class="dt">kappa_0 =</span> <span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span><span class="kw">Diagonal</span>(d),
+  <span class="dt">beta_0 =</span> <span class="kw">Matrix</span>(<span class="kw">numeric</span>(d)) <span class="co"># zeros of size d x 1</span>
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">update_hyperparams2 &lt;-<span class="st"> </span><span class="cf">function</span>(prior_hyperparams, X, z) {
+  kappa_n &lt;-<span class="st"> </span><span class="kw">crossprod</span>(X) <span class="op">+</span><span class="st"> </span>prior_hyperparams<span class="op">$</span>kappa_<span class="dv">0</span> 
+  beta_n &lt;-<span class="st"> </span><span class="kw">solve</span>(kappa_n, <span class="kw">crossprod</span>(X, z) <span class="op">+</span><span class="st"> </span>prior_hyperparams<span class="op">$</span>kappa_<span class="dv">0</span> <span class="op">%*%</span><span class="st"> </span>prior_hyperparams<span class="op">$</span>beta_<span class="dv">0</span>)  
+  <span class="kw">list</span>(<span class="dt">kappa_n =</span> kappa_n, <span class="dt">beta_n =</span> beta_n)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gibbs_sampler2 &lt;-<span class="st"> </span><span class="cf">function</span>(X, y, prior_hyperparams2, niter) {
+  <span class="co"># Progress bar</span>
+  pb &lt;-<span class="st"> </span>progress_bar<span class="op">$</span><span class="kw">new</span>(<span class="dt">total =</span> niter)
+  
+  <span class="co"># Reserve space for traces</span>
+  beta &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, niter)
+  z &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, niter)
+  tau &lt;-<span class="st"> </span><span class="fl">1.0</span> <span class="co"># fixed</span>
+  
+  <span class="co"># Initialize</span>
+  params &lt;-<span class="st"> </span>prior_hyperparams
+  <span class="kw">names</span>(params) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;_0&quot;</span>, <span class="st">&quot;_n&quot;</span>, <span class="kw">names</span>(params))
+  beta[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">beta_conditional</span>(tau, params)
+  z[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">z_conditional</span>(beta[[<span class="dv">1</span>]], tau, X, y)
+  params &lt;-<span class="st"> </span><span class="kw">update_hyperparams2</span>(prior_hyperparams2, X, z[[<span class="dv">1</span>]])
+  
+  <span class="co"># Iterate</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>niter) {
+    beta[[i]] &lt;-<span class="st"> </span><span class="kw">beta_conditional</span>(tau, params)
+    z[[i]] &lt;-<span class="st"> </span><span class="kw">z_conditional</span>(beta[[i]], tau, X, y)
+    params &lt;-<span class="st"> </span><span class="kw">update_hyperparams2</span>(prior_hyperparams2 , X, z[[i]])
+    pb<span class="op">$</span><span class="kw">tick</span>()
+  }
+  
+  <span class="kw">list</span>(<span class="dt">beta =</span> beta, <span class="dt">z =</span> z)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_iter &lt;-<span class="st"> </span><span class="dv">1000</span>
+gs2 &lt;-<span class="st"> </span><span class="kw">gibbs_sampler2</span>(X, y, prior_hyperparams2, n_iter)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta &lt;-<span class="st"> </span><span class="kw">Reduce</span>(cbind, gs2<span class="op">$</span>beta)
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">2</span>))
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>) {
+  series &lt;-<span class="st"> </span>beta[i, ]
+  mean_series &lt;-<span class="st">  </span><span class="kw">mean</span>(series)
+  sd_series &lt;-<span class="st">  </span><span class="kw">sd</span>(series)
+  series_name &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s mean: %0.4f, sd: %0.4f:&quot;</span>, <span class="kw">rownames</span>(beta)[i], mean_series, sd_series)
+  <span class="kw">plot</span>(series, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> series_name, <span class="dt">ylim =</span> <span class="kw">c</span>(mean_series <span class="op">-</span><span class="st"> </span>sd_series, mean_series <span class="op">+</span><span class="st"> </span>sd_series))
+  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(series), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+}</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="768" /></p>
+<p>Same thing but with burning</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">burnin &lt;-<span class="st"> </span><span class="dv">50</span>
+beta &lt;-<span class="st"> </span>beta[ ,<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>)]
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">2</span>))
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>) {
+  series &lt;-<span class="st"> </span>beta[i, ]
+  mean_series &lt;-<span class="st">  </span><span class="kw">mean</span>(series)
+  sd_series &lt;-<span class="st">  </span><span class="kw">sd</span>(series)
+  series_name &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s mean: %0.4f, sd: %0.4f:&quot;</span>, <span class="kw">rownames</span>(beta)[i], mean_series, sd_series)
+  <span class="kw">plot</span>(series, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> series_name)
+  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(series), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+}</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="768" /></p>
+<p>Predictions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(beta, <span class="dv">1</span>, mean)
+y_hat &lt;-<span class="st"> </span><span class="kw">ifelse</span>(X <span class="op">%*%</span><span class="st"> </span>beta_mean <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)
+tbl &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">drop</span>(y), y_hat)
+<span class="kw">print</span>(tbl)</code></pre></div>
+<pre><code>##    y_hat
+##       0   1
+##   0 433  67
+##   1 171  97</code></pre>
+<p>Total accuracy is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">diag</span>(tbl)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(tbl)</code></pre></div>
+<pre><code>## [1] 0.6901042</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="list-two-bayesian-inference-in-gaussian-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

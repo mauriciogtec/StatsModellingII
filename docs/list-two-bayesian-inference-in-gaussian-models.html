@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="list-one-preliminaries.html">
-
+<link rel="next" href="list-three-gibbs-sampler.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -78,6 +78,11 @@
 <li class="chapter" data-level="3" data-path="list-two-bayesian-inference-in-gaussian-models.html"><a href="list-two-bayesian-inference-in-gaussian-models.html"><i class="fa fa-check"></i><b>3</b> List two: Bayesian Inference in Gaussian Models</a><ul>
 <li class="chapter" data-level="3.1" data-path="list-two-bayesian-inference-in-gaussian-models.html"><a href="list-two-bayesian-inference-in-gaussian-models.html#bayesian-inference-in-a-simple-gaussian-model"><i class="fa fa-check"></i><b>3.1</b> Bayesian inference in a simple Gaussian model</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html"><i class="fa fa-check"></i><b>4</b> List three: Gibbs sampler</a><ul>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#load-data-and-explore"><i class="fa fa-check"></i>Load Data and Explore</a></li>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#hyperparameters-of-a-gibbs-sampler"><i class="fa fa-check"></i>Hyperparameters of a Gibbs Sampler</a></li>
+<li class="chapter" data-level="" data-path="list-three-gibbs-sampler.html"><a href="list-three-gibbs-sampler.html#conditionals"><i class="fa fa-check"></i>Conditionals</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -120,7 +125,6 @@
 </div>
 
 <hr />
-<<<<<<< HEAD:docs/list-2-bayesian-inference-in-gaussian-models.html
 <p><strong><em>Solution</em></strong>. These computations are very similar to those in the previous list. So here is the summarised version using of the direct computation with Bayes’ rule</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -143,22 +147,6 @@ p(\mu, \omega \mid y) &amp; \propto p(y \mid \mu, \omega ) p(\mu,\sigma) \\
 \]</span> It follows that <span class="math display">\[
 (\mu, \omega \mid y ) \sim \mathrm{NormalGamma}\left(\mu_n, \tau_n, \alpha_n, \beta_n \right)
 \]</span></p>
-=======
-<strong><em>Solution</em></strong>. These computations are very similar to those in the previous list. So here is the summarised version using of the direct computation with Bayes’ rule $$
-<span class="math display">\[\begin{aligned}
-p(\mu, \omega \mid y) &amp; \propto p(x\mid \mu, \omega ) p(\mu,\sigma) \\
-&amp; = p(y\mid \mu, \omega ) p(\mu \mid \omega)p(\omega) \\
-&amp; \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2} \sum_{i=1}^n(y_i - \mu)^2 \right\}
-\exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
-&amp; \propto \omega^{n/2}\exp\left\{ -\frac{\omega}{2}\left(\sum_{i=1}^n(y_i - \bar{y})^2 + n(\bar{y} - \mu)^2 \right)\right\}
-\exp\left\{ -\frac{\omega}{2\kappa_0} (\mu - \mu_0)^2 \right\} \omega^{\alpha_0-1}\exp\{-\beta_0 \omega\} \\
-
-&amp; \propto \omega^{n/2 + \alpha_0 - 1}\exp\left\{ -\frac{\omega}{2}\left((n + \omega / \kappa_0) \mu^2 - 2(n\bar{y} + \mu_0/\kappa_0) \mu + n\bar{y}^2 + \mu_0^2/\kappa_0   \right)\right\}
-\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\} \\
-&amp;= \omega^{n/2 + \alpha_0 - 1}  \exp\left\{ -\frac{n\omega + \omega / \kappa_0}{2} \left(\mu - \frac{n \bar{y} + \mu_0/\kappa_0}{n + 1/\kappa_0}\right)^2 \right\}\exp\left\{ -\left( \beta_0  +  \frac{1}{2}\sum_{i=1}^n(y_i - \bar{y})^2 + \frac{1}{2\kappa_0}\mu_0^2 \right)\omega \right\}
-\end{aligned}\]</span>
-<p>$$</p>
->>>>>>> 01b9cd9e2ad9105fc32ae1168021edaca3d7e998:docs/list-two-bayesian-inference-in-gaussian-models.html
 <hr />
 
 <div class="exercise">
@@ -192,8 +180,8 @@ where <span class="math inline">\(\Gamma_d(x) = \pi^{d(d-1)/4}\prod_{i=1}^d\Gamm
           </div>
         </div>
       </div>
-<a href="list-one-preliminaries.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="list-one-preliminaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="list-three-gibbs-sampler.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
